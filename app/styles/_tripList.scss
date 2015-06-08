@@ -1,0 +1,69 @@
+.journeyWrapper {
+	margin-bottom: 0.4em;
+}
+
+.journey {
+	color: black;
+	background-color: white;
+	padding: 0.5em;
+	cursor: pointer;
+}
+
+.journey table {
+	width: 100%;
+}
+
+.journey table .duration {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.journey table .end {
+	text-align:right;
+}
+
+.journey table .start, 
+.journey table .end {
+	font-weight: 600;
+}
+
+.legs {
+	color: black;
+	background-color: white;
+	padding: 0.5em;
+	cursor: pointer;
+}
+
+.legs table {
+	width: 100%;
+}
+
+.leg {
+	font-size: 0.8em;
+	margin-bottom: 1em;
+}
+
+.leg .deliminer td {
+	border-top: 1px solid #ddd;
+}
+
+.leg .deliminer tr:last-child td {
+	border-top: none;
+}
+
+.leg .local {
+	font-size: 0.8em;
+}
+
+.leg .type {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+
+.leg .name {
+	font-weight: 600;
+}
+
+.leg .duration {
+	text-align: right;
+}

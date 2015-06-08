@@ -1,0 +1,22 @@
+<table>
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Time</th>
+			<th>Line</th>
+			<!-- <th></th> -->
+			<th>From</th>
+			<th>Direction</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in ctrl.board">
+			<td ng-bind="::d.type"></td>
+			<td ng-bind="::d.time"></td>
+			<td ng-bind="::d.local"></td>
+			<!-- <td ng-bind="::d.name"></td> -->
+			<td ng-bind="::d.stop"></td>
+			<td ng-bind="::d.direction"></td>
+		</tr>
+	</tbody>
+</table>

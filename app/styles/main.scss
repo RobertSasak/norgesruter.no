@@ -1,0 +1,135 @@
+@import 'vars';
+@import '_angucomplete-alt';
+@import '_tripList';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,800);
+
+body {
+	font-family: 'Open Sans',sans-serif;;
+}
+
+/* desktop */
+@media screen and (min-width:35.5em) {
+	.wrapper {
+		max-width: 400px;
+		padding: 2em;
+		margin: 5em auto;
+		background-color: rgba(12,167,198,0.94);
+	}
+
+	html { 
+		background: url(/images/bg.jpg) no-repeat center center fixed; 
+		background-size: cover;
+	}
+}
+
+/* mobile */
+@media screen and (max-width:35.5em) and (orientation : portrait) {
+	html { 
+		background-size: cover;
+		background-color: #0ca7c6;
+	}
+
+	.wrapper {
+		padding: 0.5em;
+	}
+}
+
+.wrapper {
+	background-color: #0ca7c6;
+	color: white;
+}
+
+input[type=text] {
+	border: 0;
+	background-color: white;
+	color: black;
+	padding: 0.5em;
+	font-size: 1.5em;
+	width: 100%;
+	box-sizing: border-box;
+	outline: none;
+}
+
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=date]:focus {
+	background-color:#f8deab;
+}
+
+input[type=time], input[type=date] {
+	border: 0;
+	background-color: white;
+	color: black;
+	padding: 0.5em;
+	font-size: 1.5em;
+	outline: none;
+	display: block;
+}
+
+input[type=radio] {
+	margin: 2em 0;
+}
+
+label {
+	color: white;
+	font-weight: 600;
+	font-size: 1.2em;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: 400;
+	display: inline-block;
+}
+
+.back {
+	color: white;
+	margin-bottom: 1em;
+}
+
+.back:hover {
+	color: #DDD;
+}
+
+button.now {
+	color: white;
+	border: none;
+	font-size: 1.5em;
+	border-radius: 50%;
+	background-color: #fe5766;
+	box-shadow: 0 0 .001px 6px rgba(0,0,0,0.15);
+	width: 4em;
+	height: 4em;
+	margin: 0 auto 1em auto;
+	display: block;
+	cursor: pointer;
+	transition: background-color 400ms ease,box-shadow 600ms ease;
+}
+
+button.now:hover {
+	background-color: #fe707d;
+	box-shadow: 0 0 0 80px rgba(0,0,0,0.05);
+
+}
+
+.breaker {
+	color: white;
+	text-align: center;
+}
+
+.days, .minutes {
+	color: white;
+	font-weight: 600;
+	width: 100%;
+}
+
+.days td, .minutes td {
+	text-decoration: underline;
+	cursor: pointer;
+	padding: 0.5em 0;
+}
+
+.days td {
+	text-align: center;
+}
+

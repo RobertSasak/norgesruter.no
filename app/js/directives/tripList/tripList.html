@@ -1,0 +1,49 @@
+<div class="tripList">
+	<div class="error" ng-if="ctrl.error" ng-bind="ctrl.error"></div>
+
+	<div ng-repeat="journey in ctrl.list" class="journeyWrapper">
+		<div ng-click="journey.show=!journey.show" class="journey">
+			<table>
+				<tr>
+					<td class="start" ng-bind="journey.startTime"></td>
+					<td class="duration">
+						<div ng-bind="journey.duration"></div>
+						<span ng-if="!journey.isDirect"><span ng-bind="journey.stops"></span> stops</span>
+						<span ng-if="journey.isDirect">Direct</span>
+					</td>
+					<td class="end" ng-bind="journey.endTime"></td>
+					<td>
+						<i ng-if="journey.show" class="fa fa-angle-up"></i>
+						<i ng-if="!journey.show" class="fa fa-angle-down"></i>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div ng-if="journey.show" ng-click="journey.show=false" class="legs">
+			<table>
+				<tbody ng-repeat="leg in journey.legs" class="leg">
+					<tr>
+						<td rowspan="2">
+							<i ng-if="leg.type=='Buss'" class="fa fa-bus type"></i>
+							<i ng-if="leg.type=='Train'" class="fa fa-train type"></i>
+							<i ng-if="leg.type=='Air'" class="fa fa-plane type"></i>
+							<i ng-if="leg.type=='WALK'" class="fa fa-long-arrow-right type"></i>
+							<!-- <span ng-bind="leg.type" class="type"></span> -->
+							<span ng-bind="leg.local" class="local"></span>
+						</td>
+						<td ng-bind="leg.origin.time" class="time"></td>
+						<td ng-bind="leg.origin.name" class="name"></td>
+						<td rowspan="2" ng-bind="leg.duration" class="duration"></td>
+					</tr>
+					<tr>
+						<td ng-bind="leg.dest.time" class="time"></td>
+						<td ng-bind="leg.dest.name" class="name"></td>
+					</tr>
+					<tr class="deliminer"><td colspan="6"></td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
