@@ -5,7 +5,8 @@
  */
 function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 
-	$locationProvider.html5Mode(true);
+	//HTML5 mode does not work on ghpages
+	//$locationProvider.html5Mode(true);
 
 	$stateProvider
 		.state('trip', {
