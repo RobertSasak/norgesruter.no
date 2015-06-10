@@ -7,7 +7,10 @@ module.exports = {
     'serverport': 3002,
 
     'styles': {
-        'src': 'app/styles/**/*.scss',
+        'src': [
+            'app/styles/**/*.scss',
+            'app/js/directives/**/*.scss',
+        ],
         'dest': 'build/css'
     },
 
@@ -58,6 +61,10 @@ module.exports = {
     'test': {
         'karma': 'test/karma.conf.js',
         'protractor': 'test/protractor.conf.js'
+    },
+
+    deploy: {
+        cname: 'reise.nkart.no'
     }
 
 };

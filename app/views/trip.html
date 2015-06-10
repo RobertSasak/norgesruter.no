@@ -1,54 +1,8 @@
-<form ng-submit="ctrl.onFormSubmit()">
-       <label>
-              <span>From</span>
-              <angucomplete-alt id="origin"
-              placeholder="Enter place"
-              selected-object="ctrl.origin"
-              remote-url="http://crossorigin.me/http://hafas.utvikling01.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/location?authKey=api-test&amp;format=json&amp;input="
-              remote-url-data-field="LocationList.StopLocation"
-              title-field="name"
-              description-field="id"
-              minlength="1"></angucomplete-alt>
+<div class="wrapper">
+       <label class="dest">
+              <span>Where are you going?</span>
+              <input-stop></input-stop>
        </label>
 
-       <label>
-              <span>To</span>
-              <angucomplete-alt id="dest"
-              placeholder="Enter place"
-              selected-object="ctrl.dest"
-              remote-url="http://crossorigin.me/http://hafas.utvikling01.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/location?authKey=api-test&amp;format=json&amp;input="
-              remote-url-data-field="LocationList.StopLocation"
-              title-field="name"
-              description-field="id"
-              minlength="1"></angucomplete-alt>
-       </label>
-
-       <label>
-              <span>Time</span>
-              <input type="time" ng-model="ctrl.time">
-       </label>
-
-       <label>
-              <span>Date</span>
-              <input type="date" ng-mode="ctrl.date">
-       </label>
-
-<input type="submit" >
-       <button type="submit">Search</button>
-</form>
-
-<pre>
-	{{ctrl.origin|json}}
-</pre>
-
-<pre>
-       {{ctrl.dest|json}}
-</pre>
-Made with ♥ by Robert Sasak &amp; friends<br>
-<img src="images/angular.png" height="100" example-directive />
-<img src="images/gulp.png" height="100" />
-<img src="images/browserify.png" height="100" />
-Bus &#128652;
-Tram &#128651;
-Train &#128646;
-From
+       <i class="fa fa-location-arrow fa-3x"></i>
+</div>

@@ -15,8 +15,10 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 			templateUrl: 'trip.html',
 		})
 		.state('planner', {
-			template: '<ui-view/>',
-			abstract: true,
+			templateUrl: 'planner.html',
+			controller: 'Planner',
+			controllerAs: 'planner',
+			abstract: true
 		})
 		.state('planner.from', {
 			url: '/planner',
