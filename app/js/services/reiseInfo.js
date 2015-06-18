@@ -9,7 +9,8 @@ var angular = require('angular');
 function ReiseInfo($q, $http) {
 
     var service = {};
-    var baseUrl = 'http://crossorigin.me/http://hafas.utvikling01.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
+    //var baseUrl = 'http://crossorigin.me/http://hafas.utvikling01.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
+    var baseUrl = 'http://crossorigin.me/http://hafas.websrv05.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
     var defaultParams = {
         authKey: 'api-test',
         format: 'json'
