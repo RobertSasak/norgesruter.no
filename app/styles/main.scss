@@ -3,6 +3,7 @@
 @import '_tripList';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,800);
 @import '../js/directives/inputStop/inputStop.scss';
+@import '../../node_modules/angular-hotkeys/build/hotkeys.min.css';
 
 body {
 	font-family: 'Open Sans',sans-serif;;

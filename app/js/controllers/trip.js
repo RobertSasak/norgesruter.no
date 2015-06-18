@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus) {
+controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, hotkeys) {
 	var vm = this;
 
 	vm.showDest = true;
@@ -115,6 +115,18 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 				});
 			}
 		});
+	})();
+
+	// key bindings
+	(function () {
+		hotkeys.bindTo($scope)
+			.add({
+				combo: '/',
+				description: 'Search',
+				callback: function () {
+					Focus('originInput');
+				}
+			});
 	})();
 
 });
