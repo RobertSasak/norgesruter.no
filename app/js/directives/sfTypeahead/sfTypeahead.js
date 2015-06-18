@@ -39,7 +39,9 @@ directivesModule.directive('sfTypeahead', function () {
 				// hasn't changed at all (the 'val' property doesn't update until
 				// after the event loop finishes), then we can bail out early and keep
 				// the current model value.
-				if (fromView === element.typeahead('val')) return ngModel.$modelValue;
+				if (fromView === element.typeahead('val')) {
+					return ngModel.$modelValue;
+				}
 
 				// Assuming that all objects are datums
 				// See typeahead basics: https://gist.github.com/jharding/9458744#file-the-basics-js-L15
@@ -61,7 +63,9 @@ directivesModule.directive('sfTypeahead', function () {
 							displayKey = dataset.displayKey || 'value',
 							value = (angular.isFunction(displayKey) ? displayKey(fromModel) : fromModel[displayKey]) || '';
 
-						if (found) return false; // break
+						if (found) {
+							return false; // break
+						}
 
 						if (!value) {
 							// Fakes a request just to use the same function logic
@@ -70,7 +74,11 @@ directivesModule.directive('sfTypeahead', function () {
 						}
 
 						// Get suggestions by asynchronous request and updates the view
-						query(value, search);
+						if (angular.isFunction(query)) {
+							query(value, search);
+						} else {
+							query.search(value, search);
+						}
 						return;
 
 						function search(suggestions) {
@@ -96,7 +104,7 @@ directivesModule.directive('sfTypeahead', function () {
 					});
 
 					return ''; // loading
-				} else if (fromModel == null) {
+				} else if (fromModel === null) {
 					//fromModel has been set to null or undefined
 					element.typeahead('val', null);
 				}
@@ -105,13 +113,13 @@ directivesModule.directive('sfTypeahead', function () {
 
 			function initialize() {
 				if (init) {
-					element.typeahead(scope.options, scope.datasets)
+					element.typeahead(scope.options, scope.datasets);
 					init = false;
 				} else {
 					// If datasets or options change, hang onto user input until we reinitialize
 					var value = element.val();
 					element.typeahead('destroy');
-					element.typeahead(scope.options, scope.datasets)
+					element.typeahead(scope.options, scope.datasets);
 					ngModel.$setViewValue(value);
 					element.triggerHandler('typeahead:opened');
 				}
@@ -127,7 +135,7 @@ directivesModule.directive('sfTypeahead', function () {
 				return found >= 0;
 			}
 
-			function updateScope(object, suggestion, dataset) {
+			function updateScope(object, suggestion) {
 				scope.$apply(function () {
 					var newViewValue = (angular.isDefined(scope.suggestionKey)) ?
 						suggestion[scope.suggestionKey] : suggestion;
@@ -152,9 +160,19 @@ directivesModule.directive('sfTypeahead', function () {
 				scope.$emit('typeahead:opened');
 			});
 
+			// Propagate the opened event
+			element.bind('typeahead:open', function () {
+				scope.$emit('typeahead:open');
+			});
+
 			// Propagate the closed event
 			element.bind('typeahead:closed', function () {
 				scope.$emit('typeahead:closed');
+			});
+
+			// Propagate the closed event
+			element.bind('typeahead:close', function () {
+				scope.$emit('typeahead:close');
 			});
 
 			// Propagate the asyncrequest event
