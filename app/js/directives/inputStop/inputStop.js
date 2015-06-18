@@ -77,7 +77,7 @@ directivesModule.directive('inputStop', function (ReiseInfo) {
 					//sync(a);
 				} else {
 					sync();
-					async();
+					//async();
 				}
 			}
 
