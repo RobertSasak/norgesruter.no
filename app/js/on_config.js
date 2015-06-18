@@ -10,9 +10,10 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('trip', {
-			url: '/trip',
-			controller: 'Trip as ctrl',
+			url: '/trip?originId&originName&destId&destName',
 			templateUrl: 'trip.html',
+			controller: 'Trip',
+			controllerAs: 'ctrl'
 		})
 		.state('planner', {
 			templateUrl: 'planner.html',
@@ -39,19 +40,22 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 			controllerAs: 'ctrl',
 		})
 		.state('results', {
-			url: '/trip/:originId/:destId?time=?&date=?',
-			controller: 'Results as ctrl',
+			url: '/trip/:originId/:destId?time&date',
 			templateUrl: 'results.html',
+			controller: 'Results',
+			controllerAs: 'ctrl'
 		})
 		.state('departures', {
 			url: '/departures/:id',
-			controller: 'Departures as ctrl',
 			templateUrl: 'departures.html',
+			controller: 'Departures',
+			controllerAs: 'ctrl'
 		})
 		.state('arrivals', {
 			url: '/arrivals/:id',
-			controller: 'Arrivals as ctrl',
 			templateUrl: 'arrivals.html',
+			controller: 'Arrivals as ctrl',
+			controllerAs: 'ctrl'
 		});
 
 	$urlRouterProvider.otherwise('/planner');
