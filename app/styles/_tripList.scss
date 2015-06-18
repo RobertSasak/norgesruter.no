@@ -19,12 +19,17 @@
 }
 
 .journey table .end {
-	text-align:right;
+	text-align: right;
 }
 
 .journey table .start, 
 .journey table .end {
 	font-weight: 600;
+}
+
+.journey table .toggle {
+	text-align: right;
+	width: 1em;
 }
 
 .legs {
@@ -52,16 +57,16 @@
 }
 
 .leg .local {
-	font-size: 0.8em;
+	font-size: 1.4em;
 }
 
 .leg .type {
-	font-size: 1.5em;
+	font-size: 1.4em;
 	font-weight: 600;
 }
 
 .leg .name {
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .leg .duration {

@@ -6,7 +6,7 @@ var moment = require('moment');
 /**
  * @ngInject
  */
-directivesModule.directive('tripList', function () {
+directivesModule.directive('tripList', function (ReiseInfo) {
 
 	function normalize(list) {
 		var r = [];
@@ -79,18 +79,47 @@ directivesModule.directive('tripList', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'tripList/tripList.html',
-		controller: function (ReiseInfo) {
+		controller: function ($scope) {
 			var vm = this;
 
-			var options = angular.extend({}, {
-				originId: vm.originId,
-				destId: vm.destId,
-			}, vm.options);
-
-			ReiseInfo.trip(options).then(function (data) {
-				vm.list = normalize(data.TripList.Trip);
-				vm.error = data.TripList.errorText;
+			$scope.$watch(function () {
+				return vm.originId + ' ' + vm.destId;
+			}, function (value) {
+				if (value) {
+					reload();
+				}
 			});
+
+			function getResults(originId, destId, options) {
+				var _options = angular.extend({}, {
+					originId: originId,
+					destId: destId,
+				}, options);
+
+				vm.isSearching = true;
+				return ReiseInfo.trip(_options)
+					.then(function (data) {
+						return {
+							data: normalize(data.TripList.Trip),
+							error: data.TripList.errorText
+						};
+					})
+					.catch(function (error) {
+						console.log(error);
+					})
+					.finally(function () {
+						vm.isSearching = false;
+					});
+			}
+
+			function reload() {
+				if (vm.originId && vm.destId) {
+					getResults(vm.originId, vm.destId, vm.options).then(function (results) {
+						vm.list = results.data;
+						vm.error = results.error;
+					});
+				}
+			}
 		},
 		controllerAs: 'ctrl',
 		bindToController: {
