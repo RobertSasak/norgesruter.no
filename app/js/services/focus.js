@@ -1,7 +1,6 @@
 'use strict';
 
 var servicesModule = require('./_index.js');
-var angular = require('angular');
 
 /**
  * @ngInject
