@@ -1,14 +1,17 @@
 <div>
+	<i class="fa fa-clock-o {{source=='lastVisited'}}"></i>
+	<i class="fa fa-dot-circle-o {{source=='local'}}"></i>
+	<i class="fa fa-flash {{source=='remote'}}"></i>
+	<i class="fa fa-map-marker {{source=='nearBy'}}"></i>
 	{{name}} 
 	<!-- {{id}} -->
 	<span class="pullRight">
-		<i ng-if="{{hasBus}}" class="fa fa-bus type"></i>
-		<i ng-if="{{hasTrain}}" class="fa fa-train type"></i>
-		<i ng-if="{{hasSubway}}" class="fa fa-subway type"></i>
-		<i ng-if="{{hasPlane}}" class="fa fa-plane type"></i>
-		<i ng-if="{{hasBoat}}" class="fa fa-ship type"></i>
-		<i ng-if="{{hasMetro}}" class="fa fa-subway type"></i>
-		<i ng-if="{{lat}}" class="fa fa-map-marker type"></i>
-		<i ng-if="{{nearBy}}" class="fa fa-dot-circle-o type"></i>
+		<i class="fa fa-bus {{hasBus}}"></i>
+		<i class="fa fa-subway {{hasTram}}"></i>
+		<i class="fa fa-train {{hasTrain}}"></i>
+		<i class="fa fa-subway {{hasSubway}}"></i>
+		<i class="fa fa-plane {{hasPlane}}"></i>
+		<i class="fa fa-ship {{hasBoat}}"></i>
+		<i class="fa fa-subway {{hasMetro}}"></i>
 	</span>
 </div>

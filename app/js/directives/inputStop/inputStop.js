@@ -5,7 +5,7 @@ var angular = require('angular');
 /**
  * @ngInject
  */
-directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache) {
+directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited) {
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
@@ -26,7 +26,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			// maximum 33000 for {id,name}
 			// maximum 34000 for {i,n}
 			function transformMinify(array) {
-				return array.slice(0, 33000).map(function (a) {
+				return array.slice(0, 30000).map(function (a) {
 					return {
 						id: a.id,
 						name: a.name
@@ -52,24 +52,45 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				return array;
 			}
 
+			function addSource(array, source) {
+				angular.forEach(array, function (el) {
+					el.source = source;
+				});
+				return array;
+			}
+
 			var remote = new Bloodhound({
 				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
 				identify: function (obj) {
 					return obj.id;
 				},
+				//local: LastVisited.getAll(),
 				remote: {
 					url: baseUrl + 'location?authKey=' + authKey + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
 					transform: function (response) {
-						return normalizeId(unwrap(response));
+						return addSource(normalizeId(unwrap(response)), 'remote');
 					}
 				},
 				prefetch: {
 					url: '/data/allStops.json',
-					transform: transformMinify,
+					transform: function (response) {
+						debugger;
+
+						return addSource(transformMinify(response), 'local');
+					},
 					ttl: 14 * 24 * 60 * 60 * 1000
 				}
+			});
+
+			var lastVisited = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				identify: function (obj) {
+					return obj.id;
+				},
+				local: LastVisited.getAll()
 			});
 
 			remote.initialize();
@@ -90,28 +111,25 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			}
 
 			var suggestionTemplate = $templateCache.get('suggestion.tmpl.html');
+
 			vm.datasets = [{
 				displayKey: 'name',
-				//limit: 50,
+				limit: 50,
 				templates: {
-					//header: 'Local',
 					suggestion: function (params) {
-						console.log(params);
-						return $interpolate(suggestionTemplate)(params);
-					}
-				},
-				source: remote
-			}, {
-				displayKey: 'name',
-				templates: {
-					// header: 'Near by',
-					suggestion: function (params) {
-						console.log(params);
-						params.nearBy = true;
+						params.source = 'nearBy';
 						return $interpolate(suggestionTemplate)(params);
 					}
 				},
 				source: nearBy
+			}, {
+				displayKey: 'name',
+				templates: {
+					suggestion: function (params) {
+						return $interpolate(suggestionTemplate)(params);
+					}
+				},
+				source: remote
 			}];
 		},
 		controllerAs: 'ctrl',

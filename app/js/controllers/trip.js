@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, hotkeys) {
+controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited) {
 	var vm = this;
 
 	vm.showDest = true;
@@ -40,6 +40,8 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	function moveToDest() {
 		if (!vm.dest) {
 			Focus('destInput');
+		} else {
+			Blur('originInput');
 		}
 	}
 
@@ -49,6 +51,18 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	if (!$stateParams.originId && !$stateParams.destId) {
 		Focus('originInput');
 	}
+
+	// lastVisited
+	(function () {
+		function addToLastVisited(event, obj) {
+			LastVisited.set(obj);
+		}
+		$scope.$on('originInput:selected', addToLastVisited);
+		$scope.$on('originInput:autocompleted', addToLastVisited);
+		$scope.$on('destInput:selected', addToLastVisited);
+		$scope.$on('destInput:autocompleted', addToLastVisited);
+
+	})()
 
 	// typeahead
 	$scope.$on('typeahead:open', function (event) {

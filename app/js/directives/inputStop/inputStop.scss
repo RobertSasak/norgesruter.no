@@ -1,3 +1,11 @@
+.tt-suggestion .fa {
+  display: none
+}
+
+.tt-suggestion .fa.true {
+  display: inline-block
+}
+
 .pullRight {
   float: right;
 }
