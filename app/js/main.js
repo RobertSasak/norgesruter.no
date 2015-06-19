@@ -10,6 +10,7 @@ require('./services/_index');
 require('./directives/_index');
 require('angucomplete-alt');
 require('angular-hotkeys');
+require('ngstorage');
 
 // create and bootstrap application
 angular.element(document).ready(function () {
@@ -21,7 +22,8 @@ angular.element(document).ready(function () {
         'app.services',
         'app.directives',
         'angucomplete-alt',
-        'cfp.hotkeys'
+        'cfp.hotkeys',
+        'ngStorage'
     ];
 
     // mount on window for testing
