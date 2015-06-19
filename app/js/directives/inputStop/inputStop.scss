@@ -1,3 +1,11 @@
+.pullRight {
+  float: right;
+}
+
+.tt-input:focus {
+    background-color: rgba(248, 222, 171, .8) !important;
+}
+
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -19,7 +27,7 @@
 }
 
 .tt-hint {
-    color: #999
+    color: #000
 }
 
 .tt-menu {

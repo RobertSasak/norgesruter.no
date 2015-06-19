@@ -5,7 +5,7 @@ var angular = require('angular');
 /**
  * @ngInject
  */
-directivesModule.directive('inputStop', function (ReiseInfo) {
+directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache) {
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
@@ -26,12 +26,30 @@ directivesModule.directive('inputStop', function (ReiseInfo) {
 			// maximum 33000 for {id,name}
 			// maximum 34000 for {i,n}
 			function transformMinify(array) {
-				return array.slice(0, 34000).map(function (a) {
+				return array.slice(0, 33000).map(function (a) {
 					return {
 						id: a.id,
 						name: a.name
 					};
 				});
+			}
+
+			function unwrap(response) {
+				var sl = response.LocationList.StopLocation;
+				if (!sl) {
+					return [];
+				}
+				if (angular.isArray(sl)) {
+					return sl;
+				}
+				return [sl];
+			}
+
+			function normalizeId(array) {
+				angular.forEach(array, function (el) {
+					el.id = parseInt(el.id, 10);
+				});
+				return array;
 			}
 
 			var remote = new Bloodhound({
@@ -44,13 +62,7 @@ directivesModule.directive('inputStop', function (ReiseInfo) {
 					url: baseUrl + 'location?authKey=' + authKey + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
 					transform: function (response) {
-						if (!response.LocationList.StopLocation) {
-							return [];
-						}
-						if (angular.isArray(response.LocationList.StopLocation)) {
-							return transformMinify(response.LocationList.StopLocation);
-						}
-						return transformMinify([response.LocationList.StopLocation]);
+						return normalizeId(unwrap(response));
 					}
 				},
 				prefetch: {
@@ -72,28 +84,32 @@ directivesModule.directive('inputStop', function (ReiseInfo) {
 					}).then(function (data) {
 						async(data);
 					});
-					//TODO: remove
-					//var a = local.get([6653]);
-					//sync(a);
 				} else {
-					sync();
-					//async();
+					sync([]);
 				}
 			}
 
+			var suggestionTemplate = $templateCache.get('suggestion.tmpl.html');
 			vm.datasets = [{
 				displayKey: 'name',
 				//limit: 50,
 				templates: {
-					header: 'Local',
+					//header: 'Local',
+					suggestion: function (params) {
+						console.log(params);
+						return $interpolate(suggestionTemplate)(params);
+					}
 				},
 				source: remote
 			}, {
 				displayKey: 'name',
 				templates: {
-					header: 'Near by',
-					notFound: 'No stops near by',
-					pending: 'Searching nearby stops...'
+					// header: 'Near by',
+					suggestion: function (params) {
+						console.log(params);
+						params.nearBy = true;
+						return $interpolate(suggestionTemplate)(params);
+					}
 				},
 				source: nearBy
 			}];
