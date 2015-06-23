@@ -5,7 +5,7 @@ var angular = require('angular');
 /**
  * @ngInject
  */
-directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited) {
+directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited, geolocation) {
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
@@ -65,7 +65,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				identify: function (obj) {
 					return obj.id;
 				},
-				//local: LastVisited.getAll(),
+				local: LastVisited.getAll(),
 				remote: {
 					url: baseUrl + 'location?authKey=' + authKey + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
@@ -97,13 +97,17 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 
 			function nearBy(q, sync, async) {
 				if (q === '') {
-					ReiseInfo.locationNearByStops({
-						originCoordLat: 60.391263,
-						originCoordLong: 5.322054
-					}).then(function (response) {
-						return response.LocationList.StopLocation;
-					}).then(function (data) {
-						async(data);
+					geolocation.getLocation({
+						timeout: 60000
+					}).then(function (position) {
+						ReiseInfo.locationNearByStops({
+							originCoordLat: position.coords.latitude,
+							originCoordLong: position.coords.longitude
+						}).then(function (response) {
+							return response.LocationList.StopLocation;
+						}).then(function (data) {
+							async(data);
+						});
 					});
 				} else {
 					sync([]);
