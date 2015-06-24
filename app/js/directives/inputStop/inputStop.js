@@ -76,21 +76,10 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				prefetch: {
 					url: '/data/allStops.json',
 					transform: function (response) {
-						debugger;
-
 						return addSource(transformMinify(response), 'local');
 					},
 					ttl: 14 * 24 * 60 * 60 * 1000
 				}
-			});
-
-			var lastVisited = new Bloodhound({
-				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-				queryTokenizer: Bloodhound.tokenizers.whitespace,
-				identify: function (obj) {
-					return obj.id;
-				},
-				local: LastVisited.getAll()
 			});
 
 			remote.initialize();
