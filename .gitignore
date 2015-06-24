@@ -2,3 +2,4 @@
 build
 node_modules
 app/js/templates.js
+app/data/allStops.json

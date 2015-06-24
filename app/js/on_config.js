@@ -15,36 +15,6 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 			controller: 'Trip',
 			controllerAs: 'ctrl'
 		})
-		.state('planner', {
-			templateUrl: 'planner.html',
-			controller: 'Planner',
-			controllerAs: 'planner',
-			abstract: true
-		})
-		.state('planner.from', {
-			url: '/planner',
-			templateUrl: 'from.html',
-			controller: 'From',
-			controllerAs: 'ctrl'
-		})
-		.state('planner.to', {
-			url: '/planner/:originId',
-			templateUrl: 'to.html',
-			controller: 'To',
-			controllerAs: 'ctrl',
-		})
-		.state('planner.time', {
-			url: '/planner/:originId/:destId',
-			templateUrl: 'time.html',
-			controller: 'Time',
-			controllerAs: 'ctrl',
-		})
-		.state('results', {
-			url: '/trip/:originId/:destId?time&date',
-			templateUrl: 'results.html',
-			controller: 'Results',
-			controllerAs: 'ctrl'
-		})
 		.state('departures', {
 			url: '/departures/:id',
 			templateUrl: 'departures.html',
@@ -58,7 +28,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 			controllerAs: 'ctrl'
 		});
 
-	$urlRouterProvider.otherwise('/planner');
+	$urlRouterProvider.otherwise('/trip');
 
 }
 
