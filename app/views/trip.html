@@ -5,7 +5,7 @@
 		<input-stop id="origin" placeholder="Type place here" model="ctrl.origin" initial-value="ctrl.originInitValue"></input-stop>
 	</label>
 
-	<label ng-show="ctrl.showDest">
+	<label ng-class="{hide:!ctrl.showDest}">
 		<span>To</span>
 		<input-stop id="dest" placeholder="Type place here" model="ctrl.dest" initial-value="ctrl.destInitValue"></input-stop>
 	</label>
