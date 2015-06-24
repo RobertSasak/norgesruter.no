@@ -56,8 +56,8 @@ directivesModule.directive('tripList', function (ReiseInfo) {
 		var leg = {
 			type: l.type,
 			local: l.local,
-			origin: normalizeOrigin(l.Origin),
-			dest: normalizeOrigin(l.Destination)
+			origin: normalizePlace(l.Origin),
+			dest: normalizePlace(l.Destination)
 		};
 
 		var startDateTime = leg.origin.date + ' ' + leg.origin.time;
@@ -67,7 +67,7 @@ directivesModule.directive('tripList', function (ReiseInfo) {
 		return leg;
 	}
 
-	function normalizeOrigin(o) {
+	function normalizePlace(o) {
 		return {
 			name: o.name,
 			id: o.id,
@@ -83,7 +83,7 @@ directivesModule.directive('tripList', function (ReiseInfo) {
 			var vm = this;
 
 			$scope.$watch(function () {
-				return vm.originId + ' ' + vm.destId;
+				return vm.originId + ' ' + vm.destId + vm.options.date + vm.options.time;
 			}, function (value) {
 				if (value) {
 					reload();

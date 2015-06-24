@@ -12,6 +12,7 @@ require('angucomplete-alt');
 require('angular-hotkeys');
 require('ngstorage');
 require('angular-cache');
+require('angular-datepicker');
 
 // create and bootstrap application
 angular.element(document).ready(function () {
@@ -25,7 +26,8 @@ angular.element(document).ready(function () {
         'angucomplete-alt',
         'cfp.hotkeys',
         'ngStorage',
-        'angular-cache'
+        'angular-cache',
+        'datePicker',
     ];
 
     // mount on window for testing

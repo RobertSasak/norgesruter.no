@@ -4,9 +4,11 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,800);
 @import '../js/directives/inputStop/inputStop.scss';
 @import '../../node_modules/angular-hotkeys/build/hotkeys.min.css';
+@import '../../node_modules/angular-datepicker/dist/index.css';
 
 body {
 	font-family: 'Open Sans',sans-serif;;
+	color: rgb(102, 102, 102);
 }
 
 /* desktop */
@@ -41,16 +43,14 @@ body {
 	color: white;
 }
 
-	input[type=text] {
-		border: 0;
-		// background-color: white;
-		// color: black;
-		padding: 0.5em;
-		font-size: 24px;
-		width: 100%;
-		box-sizing: border-box;
-		outline: none;
-	}
+input[type=text] {
+	border: 0;
+	padding: 0.5em;
+	font-size: 24px;
+	width: 100%;
+	box-sizing: border-box;
+	outline: none;
+}
 
 input[type=text]:focus,
 input[type=time]:focus,
@@ -135,4 +135,26 @@ button.now:hover {
 .days td {
 	text-align: center;
 }
+
+/* date */
+[date-picker] {
+	border-radius: 0;
+}
+[date-picker] td {
+	width: auto;
+}
+[date-picker] .now, [date-picker] .now:hover {
+	color: inherit;
+	background-color: #eee;
+	background-image: none;
+}
+[date-picker] .now.active, [date-picker] .active, [date-picker] .active.active, [date-picker] .active:hover {
+	background-color: #0CA7C6;
+	background-image: none;
+}
+[date-picker] {
+	color: black;
+}
+// End date
+
 

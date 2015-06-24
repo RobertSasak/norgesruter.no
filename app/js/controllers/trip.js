@@ -5,11 +5,30 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited) {
+controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited, $filter) {
 	var vm = this;
 
 	vm.showDest = true;
 	vm.showResults = true;
+	vm.options = {};
+	vm.datetime = new Date();
+
+	(function () {
+		var filterDate = $filter('date');
+
+		$scope.$watch(function () {
+			return vm.datetime;
+		}, function (value) {
+			if (value) {
+				vm.options.date = filterDate(value, 'yyyy-MM-dd');
+				vm.options.time = filterDate(value, 'HH:mm');
+			}
+		});
+	})();
+
+	vm.datetime.setMinutes(0);
+	vm.datetime.setSeconds(0);
+	vm.datetime.setMilliseconds(0);
 
 	$scope.$on('originInput:open', function () {
 		$scope.$apply(function () {
@@ -62,24 +81,26 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		$scope.$on('destInput:selected', addToLastVisited);
 		$scope.$on('destInput:autocompleted', addToLastVisited);
 
-	})()
+	})();
 
 	// typeahead
-	$scope.$on('typeahead:open', function (event) {
-		$scope.$emit(event.targetScope.options.id + 'Input:open');
-	});
+	(function () {
+		$scope.$on('typeahead:open', function (event) {
+			$scope.$emit(event.targetScope.options.id + 'Input:open');
+		});
 
-	$scope.$on('typeahead:close', function (event) {
-		$scope.$emit(event.targetScope.options.id + 'Input:close');
-	});
+		$scope.$on('typeahead:close', function (event) {
+			$scope.$emit(event.targetScope.options.id + 'Input:close');
+		});
 
-	$scope.$on('typeahead:selected', function (event, selected) {
-		$scope.$emit(event.targetScope.options.id + 'Input:selected', selected);
-	});
+		$scope.$on('typeahead:selected', function (event, selected) {
+			$scope.$emit(event.targetScope.options.id + 'Input:selected', selected);
+		});
 
-	$scope.$on('typeahead:autocompleted', function (event, selected) {
-		$scope.$emit(event.targetScope.options.id + 'Input:autocompleted', selected);
-	});
+		$scope.$on('typeahead:autocompleted', function (event, selected) {
+			$scope.$emit(event.targetScope.options.id + 'Input:autocompleted', selected);
+		});
+	})();
 
 	// set params from url
 	(function () {
@@ -95,6 +116,14 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 				id: $stateParams.destId,
 				name: $stateParams.destName
 			};
+		}
+
+		if ($stateParams.date) {
+			vm.date = $stateParams.date;
+		}
+
+		if ($stateParams.time) {
+			vm.time = $stateParams.time;
 		}
 	})();
 
