@@ -67,7 +67,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				},
 				local: LastVisited.getAll(),
 				remote: {
-					url: baseUrl + 'location?authKey=' + authKey + '&format=json&input=%QUERY',
+					url: baseUrl + 'location.name?authKey=' + authKey + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
 					transform: function (response) {
 						return addSource(normalizeId(unwrap(response)), 'remote');
@@ -102,7 +102,8 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 					}).then(function (position) {
 						ReiseInfo.locationNearByStops({
 							originCoordLat: position.coords.latitude,
-							originCoordLong: position.coords.longitude
+							originCoordLong: position.coords.longitude,
+							maxNo: 1000
 						}).then(function (response) {
 							return response.LocationList.StopLocation;
 						}).then(function (data) {
