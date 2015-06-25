@@ -6,11 +6,10 @@ var angular = require('angular');
 /**
  * @ngInject
  */
-function ReiseInfo($q, $http, CacheFactory) {
+function ReiseInfo($q, $http, CacheFactory, AppSettings) {
 
     var service = {};
-    //var baseUrl = 'http://crossorigin.me/http://hafas.utvikling01.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
-    var baseUrl = 'http://crossorigin.me/http://hafas.websrv05.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
+    var baseUrl = AppSettings.reiseinfoApi;
     var defaultParams = {
         authKey: 'api-test',
         format: 'json'

@@ -2,26 +2,26 @@
 
 'use strict';
 
-describe('Unit: Constants', function() {
+describe('Unit: Constants', function () {
 
   var constants;
 
-  beforeEach(function() {
+  beforeEach(function () {
     // instantiate the app module
     angular.mock.module('app');
 
     // mock the directive
-    angular.mock.inject(function(AppSettings) {
+    angular.mock.inject(function (AppSettings) {
       constants = AppSettings;
     });
   });
 
-  it('should exist', function() {
+  it('should exist', function () {
     expect(constants).toBeDefined();
   });
 
-  it('should have an application name', function() {
-    expect(constants.appTitle).toEqual('Example Application');
+  it('should have an application name', function () {
+    expect(constants.appTitle).toEqual('Norgesruter.no');
   });
 
 });

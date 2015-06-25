@@ -5,7 +5,7 @@ var angular = require('angular');
 /**
  * @ngInject
  */
-directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited, geolocation) {
+directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited, geolocation, AppSettings) {
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
@@ -13,7 +13,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			var vm = this;
 			var Bloodhound = $window.Bloodhound;
 			var authKey = 'api-test';
-			var baseUrl = 'http://crossorigin.me/http://hafas.websrv05.reiseinfo.no/bin/dev/nri/rest.exe/v1.1/vs_restapi/';
+			var baseUrl = AppSettings.reiseinfoApi;
 
 			// Typeahead options object
 			vm.options = {
