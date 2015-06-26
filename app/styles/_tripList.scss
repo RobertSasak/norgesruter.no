@@ -5,8 +5,14 @@
 .journey {
 	color: black;
 	background-color: white;
-	padding: 0.5em;
+	padding: 0.3em;
 	cursor: pointer;
+}
+
+@media screen and (min-width:35.5em) {
+	.journey {
+		padding: 0.5em;
+	}
 }
 
 .journey table {
@@ -52,7 +58,7 @@
 	border-top: 1px solid #ddd;
 }
 
-.leg .deliminer tr:last-child td {
+.leg:first-child .deliminer td {
 	border-top: none;
 }
 
@@ -60,9 +66,14 @@
 	font-size: 1.4em;
 }
 
-.leg .type {
-	font-size: 1.4em;
-	font-weight: 600;
+.leg .line {
+	text-spacing: nowrap;
+	font-size: 1.2em;
+}
+
+.leg .time {
+	vertical-align: top;
+	letter-spacing: nowrap;
 }
 
 .leg .name {

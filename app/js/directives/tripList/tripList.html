@@ -6,18 +6,22 @@
 		</div>
 	</div>
 
-	<div ng-hide="ctrl.isSearching">
+	<div ng-class="{hide:ctrl.isSearching}">
 		<div class="error" ng-if="ctrl.error && !ctrl.isSearching" ng-bind="ctrl.error"></div>
 		
-		<div ng-if="!ctrl.isSearching" ng-repeat="journey in ctrl.list" class="journeyWrapper">
+		<div ng-class="{hide:ctrl.isSearching}" ng-repeat="journey in ctrl.list" class="journeyWrapper">
 			<div ng-click="journey.show=!journey.show" class="journey">
 				<table>
 					<tr>
 						<td class="start" ng-bind="journey.startTime"></td>
 						<td class="duration">
-							<div ng-bind="journey.duration"></div>
-							<span ng-if="!journey.isDirect"><span ng-bind="journey.stops"></span> stops</span>
-							<span ng-if="journey.isDirect">Direct</span>
+							<!-- <span ng-if="!journey.isDirect"><span ng-bind="journey.stops"></span> stops</span> -->
+							<!-- <span ng-if="journey.isDirect">Direct</span> -->
+							
+							<span ng-repeat="leg in journey.legs">
+								<line type="leg.type" number="leg.local"></line>
+							</span><br>
+							<span ng-bind="journey.duration"></span>
 						</td>
 						<td class="end" ng-bind="journey.endTime"></td>
 						<td class="toggle">
@@ -31,17 +35,10 @@
 			<div ng-if="journey.show" ng-click="journey.show=false" class="legs">
 				<table>
 					<tbody ng-repeat="leg in journey.legs" class="leg">
+						<tr class="deliminer"><td colspan="6"></td></tr>
 						<tr>
 							<td rowspan="2">
-								<i ng-if="leg.type=='Buss'" class="fa fa-bus type"></i>
-								<i ng-if="leg.type=='Train'" class="fa fa-train type"></i>
-								<i ng-if="leg.type=='Tram'" class="fa fa-subway type"></i>
-								<i ng-if="leg.type=='Air'" class="fa fa-plane type"></i>
-								<i ng-if="leg.type=='WALK'" class="fa fa-male type"></i>
-								<i ng-if="leg.type=='Exp.boat'" class="fa fa-ship type"></i>
-								<i ng-if="leg.type=='U'" class="fa fa-subway type"></i>
-								<!-- <span ng-bind="leg.type" class="type"></span> -->
-								<span ng-bind="leg.local" class="local"></span>
+								<line type="leg.type" number="leg.local"></line>
 							</td>
 							<td ng-bind="leg.origin.time" class="time"></td>
 							<td ng-bind="leg.origin.name" class="name"></td>
@@ -51,7 +48,6 @@
 							<td ng-bind="leg.dest.time" class="time"></td>
 							<td ng-bind="leg.dest.name" class="name"></td>
 						</tr>
-						<tr class="deliminer"><td colspan="6"></td></tr>
 					</tbody>
 				</table>
 			</div>

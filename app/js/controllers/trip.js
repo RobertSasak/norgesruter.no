@@ -9,6 +9,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	var vm = this;
 
 	vm.showDest = true;
+	vm.showDate = true;
 	vm.showResults = true;
 	vm.options = {};
 	vm.datetime = new Date();
@@ -33,6 +34,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	$scope.$on('originInput:open', function () {
 		$scope.$apply(function () {
 			vm.showDest = false;
+			vm.showDate = false;
 			vm.showResults = false;
 		});
 	});
@@ -40,6 +42,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	$scope.$on('originInput:close', function () {
 		$scope.$apply(function () {
 			vm.showDest = true;
+			vm.showDate = true;
 			vm.showResults = true;
 		});
 	});
@@ -47,12 +50,14 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	$scope.$on('destInput:open', function () {
 		$scope.$apply(function () {
 			vm.showResults = false;
+			vm.showDate = false;
 		});
 	});
 
 	$scope.$on('destInput:close', function () {
 		$scope.$apply(function () {
 			vm.showResults = true;
+			vm.showDate = true;
 		});
 	});
 

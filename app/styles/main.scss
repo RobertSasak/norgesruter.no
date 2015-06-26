@@ -3,6 +3,7 @@
 @import '_tripList';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,800);
 @import '../js/directives/inputStop/inputStop.scss';
+@import '../js/directives/line/line.scss';
 @import '../../node_modules/angular-hotkeys/build/hotkeys.min.css';
 @import '../../node_modules/angular-datepicker/dist/index.css';
 
@@ -26,16 +27,13 @@ body {
 	}
 }
 
-/* mobile */
-@media screen and (max-width:35.5em) and (orientation : portrait) {
-	html { 
-		background-size: cover;
-		background-color: #0ca7c6;
-	}
+body { 
+	background-color: #0ca7c6;
+	margin:0;
+}
 
-	.wrapper {
-		padding: 0.5em;
-	}
+.wrapper {
+	padding: 0.5em;
 }
 
 .wrapper {
@@ -154,6 +152,16 @@ button.now:hover {
 }
 [date-picker] {
 	color: black;
+}
+
+[date-picker] span {
+	width: 14%;
+}
+
+[date-picker] td {
+	// -webkit-column-count: 4;
+	// -moz-column-count: 4;
+	// column-count: 4;
 }
 // End date
 
