@@ -49,7 +49,7 @@ directivesModule.directive('tripList', function (ReiseInfo) {
 	}
 
 	function getDuration(start, end) {
-		return moment.utc(moment(end).diff(start)).format('H[t] m[min]');
+		return moment.utc(moment(end).diff(start)).format('H[t] m[min]').replace('0t ', '');
 	}
 
 	function normalizeLeg(l) {
