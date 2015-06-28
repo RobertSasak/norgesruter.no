@@ -64,7 +64,7 @@ module.exports = {
     },
 
     deploy: {
-        cname: 'reise.nkart.no'
+        cname: 'www.norgesruter.no'
     }
 
 };
