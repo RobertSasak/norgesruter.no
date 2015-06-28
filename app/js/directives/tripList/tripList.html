@@ -1,23 +1,13 @@
 <div class="tripList">
 
-	<div ng-show="ctrl.isSearching">
-		<div class="loading">
-			<i class="fa fa-spinner fa-spin fa-5x"></i>
-		</div>
-	</div>
-
-	<div ng-class="{hide:ctrl.isSearching}">
-		<div class="error" ng-if="ctrl.error && !ctrl.isSearching" ng-bind="ctrl.error"></div>
+	<div aaang-class="{hide:ctrl.isSearching}">
 		
-		<div ng-class="{hide:ctrl.isSearching}" ng-repeat="journey in ctrl.list" class="journeyWrapper">
+		<div ng-repeat="journey in ctrl.list" class="journeyWrapper">
 			<div ng-click="journey.show=!journey.show" class="journey">
 				<table>
 					<tr>
 						<td class="start" ng-bind="journey.startTime"></td>
 						<td class="duration">
-							<!-- <span ng-if="!journey.isDirect"><span ng-bind="journey.stops"></span> stops</span> -->
-							<!-- <span ng-if="journey.isDirect">Direct</span> -->
-							
 							<span ng-repeat="leg in journey.legs">
 								<line type="leg.type" number="leg.local"></line>
 							</span><br>
@@ -52,6 +42,14 @@
 				</table>
 			</div>
 		</div>
+		
+		<div class="error" ng-if="ctrl.error && !ctrl.isSearching" ng-bind="ctrl.error"></div>
+
 	</div>
-	<button ng-click="ctrl.more()">More</button>
+
+	<div ng-show="ctrl.isSearching">
+		<div class="loading">
+			<i class="fa fa-spinner fa-spin fa-5x"></i>
+		</div>
+	</div>
 </div>

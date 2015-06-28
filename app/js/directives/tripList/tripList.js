@@ -13,19 +13,26 @@ directivesModule.directive('tripList', function (Trip) {
 		controller: function ($scope) {
 			var vm = this;
 
+			vm.list = [];
+
 			$scope.$watch(function () {
 				return vm.originId + ' ' + vm.destId + vm.options.date + vm.options.time;
 			}, function () {
-				reload(vm.originId, vm.destId, vm.options);
+				vm.list = [];
+				load(vm.originId, vm.destId, vm.options);
 			});
 
-			function reload(originId, destId, options) {
+			function load(originId, destId, options) {
 				if (originId && destId) {
+
+					var _options = angular.extend({}, options, getLast(vm.list));
+
 					vm.isSearching = true;
 					return Trip
-						.get(originId, destId, options)
+						.get(originId, destId, _options)
 						.then(function (list) {
-							vm.list = list;
+							vm.list = vm.list.concat(list);
+							vm.list = unique(vm.list);
 						})
 						.catch(function (error) {
 							vm.list = [];
@@ -38,25 +45,35 @@ directivesModule.directive('tripList', function (Trip) {
 			}
 
 			function getLast(list) {
-				var last = list[list.length - 1];
-				return {
-					time: last.startTime,
-					date: last.startDate
-				};
+				if (list.length > 0) {
+					var last = list[list.length - 1];
+					return {
+						time: last.startTime,
+						date: last.startDate
+					};
+				} else {
+					return {};
+				}
 			}
 
-			function loadMore() {
-				var options = angular.extend({}, vm.options, getLast(vm.list));
-				Trip
-					.get(vm.originId, vm.destId, options)
-					.then(function (list) {
-						vm.list = vm.list.concat(list);
-					});
+			function more() {
+				if (!vm.isSearching) {
+					load(vm.originId, vm.destId, vm.options);
+				}
 			}
 
-			vm.more = function () {
-				loadMore();
-			};
+			function unique(list) {
+				var seen = {};
+				return list.filter(function (item) {
+					return seen.hasOwnProperty(item.id) ? false : (seen[item.id] = true);
+				});
+			}
+
+			$(window).scroll(function () {
+				if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+					more();
+				}
+			});
 		},
 		controllerAs: 'ctrl',
 		bindToController: {

@@ -62,6 +62,7 @@ function normalize(list) {
         journey.endTime = last.time;
         journey.startDate = first.date;
         journey.endDate = last.date;
+        journey.id = journey.startDate + journey.startTime + journey.endDate + journey.endTime;
 
         var startDateTime = journey.startDate + ' ' + journey.startTime;
         var endDateTime = journey.endDate + ' ' + journey.endTime;
