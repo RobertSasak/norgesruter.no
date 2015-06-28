@@ -10,33 +10,32 @@
 body {
 	font-family: 'Open Sans',sans-serif;;
 	color: rgb(102, 102, 102);
+	margin: 0;
+	background-color: #0ca7c6;
 }
 
-/* desktop */
 @media screen and (min-width:35.5em) {
 	.wrapper {
-		max-width: 400px;
+		margin: 5em auto 0 auto;
 		padding: 2em;
-		margin: 5em auto;
 		background-color: rgba(12,167,198,0.94);
 	}
 
-	html { 
+	body { 
 		background: url(/images/bg.jpg) no-repeat center center fixed; 
 		background-size: cover;
 	}
 }
 
-body { 
-	background-color: #0ca7c6;
-	margin:0;
+@media screen and (max-width:35.5em) {
+	.wrapper {
+		margin: 0 auto;
+		padding: 0.5em;
+	}
 }
 
 .wrapper {
-	padding: 0.5em;
-}
-
-.wrapper {
+	max-width: 35.5em;
 	background-color: #0ca7c6;
 	color: white;
 }
