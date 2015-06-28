@@ -1,6 +1,7 @@
 'use strict';
 
 var directivesModule = require('../_index.js');
+var angular = require('angular');
 
 /**
  * @ngInject
@@ -21,11 +22,13 @@ directivesModule.directive('tripList', function (Trip) {
 			function reload(originId, destId, options) {
 				if (originId && destId) {
 					vm.isSearching = true;
-					return Trip.get(originId, destId, options)
+					return Trip
+						.get(originId, destId, options)
 						.then(function (list) {
 							vm.list = list;
 						})
 						.catch(function (error) {
+							vm.list = [];
 							vm.error = error;
 						})
 						.finally(function () {
@@ -33,6 +36,27 @@ directivesModule.directive('tripList', function (Trip) {
 						});
 				}
 			}
+
+			function getLast(list) {
+				var last = list[list.length - 1];
+				return {
+					time: last.startTime,
+					date: last.startDate
+				};
+			}
+
+			function loadMore() {
+				var options = angular.extend({}, vm.options, getLast(vm.list));
+				Trip
+					.get(vm.originId, vm.destId, options)
+					.then(function (list) {
+						vm.list = vm.list.concat(list);
+					});
+			}
+
+			vm.more = function () {
+				loadMore();
+			};
 		},
 		controllerAs: 'ctrl',
 		bindToController: {
