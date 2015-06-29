@@ -14,6 +14,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			var Bloodhound = $window.Bloodhound;
 			var authKey = 'api-test';
 			var baseUrl = AppSettings.reiseinfoApi;
+			var limitHistory = 4;
 
 			// Typeahead options object
 			vm.options = {
@@ -65,7 +66,6 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				identify: function (obj) {
 					return obj.id;
 				},
-				local: LastVisited.getAll(),
 				remote: {
 					url: baseUrl + 'location.name?authKey=' + authKey + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
@@ -79,7 +79,9 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 						return addSource(transformMinify(response), 'local');
 					},
 					ttl: 14 * 24 * 60 * 60 * 1000
-				}
+				},
+				local: LastVisited.getAll(),
+
 			});
 
 			remote.initialize();
@@ -99,6 +101,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 							async(data);
 						});
 					});
+					sync(LastVisited.getLast(limitHistory));
 				} else {
 					sync([]);
 				}
@@ -107,23 +110,26 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			var suggestionTemplate = $templateCache.get('suggestion.tmpl.html');
 
 			vm.datasets = [{
+				source: nearBy,
 				displayKey: 'name',
-				limit: 50,
+				limit: 150,
 				templates: {
 					suggestion: function (params) {
-						params.source = 'nearBy';
+						if (!params.source) {
+							params.source = 'nearBy';
+						}
 						return $interpolate(suggestionTemplate)(params);
 					}
 				},
-				source: nearBy
 			}, {
+				source: remote,
 				displayKey: 'name',
+				limit: 30,
 				templates: {
 					suggestion: function (params) {
 						return $interpolate(suggestionTemplate)(params);
 					}
 				},
-				source: remote
 			}];
 		},
 		controllerAs: 'ctrl',

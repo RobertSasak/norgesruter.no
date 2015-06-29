@@ -19,6 +19,16 @@ servicesModule
             });
         }
 
+        function sortByTime(a, b) {
+            if (a.touch < b.touch) {
+                return 1;
+            }
+            if (a.touch > b.touch) {
+                return -1;
+            }
+            return 0;
+        }
+
         return {
             get: function (id) {
                 return lastVisited[id];
@@ -26,11 +36,19 @@ servicesModule
             set: function (obj) {
                 var old = lastVisited[obj.id];
                 obj.count = old ? old.count + 1 : 0;
+                obj.touch = new Date();
                 obj.source = 'lastVisited';
                 lastVisited[obj.id] = obj;
             },
             getAll: function () {
                 return obj2Array(lastVisited);
+            },
+            getLast: function (limit) {
+                if (!limit) {
+                    limit = 1000;
+                }
+                var arr = obj2Array(lastVisited).sort(sortByTime).slice(0, limit);
+                return arr;
             }
         };
 
