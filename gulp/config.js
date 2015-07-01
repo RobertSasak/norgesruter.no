@@ -10,6 +10,7 @@ module.exports = {
         'src': [
             'app/styles/**/*.scss',
             'app/js/directives/**/*.scss',
+            'app/js/directives/**/*.css',
         ],
         'dest': 'build/css'
     },

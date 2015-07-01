@@ -1,3 +1,26 @@
+.input-wrapper{
+    position: relative;
+}
+
+.input-clear {
+  position: absolute;
+  z-index: 10;
+  right: 8px;
+  top: 8px;
+  color: black;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2em;
+  cursor: pointer;
+}
+
+.input-clear:hover {
+    background-color: #eee;
+    border-radius: 0.5em;
+}
+
 .tt-suggestion .fa {
   display: none
 }
@@ -11,7 +34,7 @@
 }
 
 .tt-input:focus {
-    background-color: rgba(248, 222, 171, .8) !important;
+  background-color: rgba(248, 222, 171, .8) !important;
 }
 
 .typeahead,
@@ -29,26 +52,26 @@
 }
 
 .tt-query {
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .tt-hint {
-    color: #000
+  color: #000
 }
 
 .tt-menu {
-    color: black;
-    margin: 12px 0;
-    padding: 8px 0;
-    background-color: #fff;
+  color: black;
+  margin: 12px 0;
+  padding: 8px 0;
+  background-color: #fff;
 }
 
 .tt-suggestion {
-    padding: 3px 20px;
-    font-size: 18px;
-    line-height: 24px;
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .tt-suggestion:hover {
@@ -69,9 +92,9 @@
 
 /* */
 .tt-menu {
-    position: relative !important;
+  position: relative !important;
 }
 
 .twitter-typeahead {
-    display: block !important;
+  display: block !important;
 }
