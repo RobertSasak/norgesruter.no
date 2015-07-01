@@ -33,6 +33,7 @@ directivesModule.directive('tripList', function (Trip) {
 						.then(function (list) {
 							vm.list = vm.list.concat(list);
 							vm.list = unique(vm.list);
+							vm.error = undefined;
 						})
 						.catch(function (error) {
 							vm.list = [];

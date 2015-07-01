@@ -2,4 +2,8 @@
 build
 node_modules
 app/js/templates.js
-app/data/allStops.json
+app/data
+resources
+release
+phonegap
+.phonegap.json
