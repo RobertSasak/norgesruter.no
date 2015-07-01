@@ -1,14 +1,14 @@
 <div class="wrapper">
 
-	<label>
+	<div class="label">
 		<span>Fra</span>
 		<input-stop id="origin" placeholder="Holdeplass" model="ctrl.origin" initial-value="ctrl.originInitValue"></input-stop>
-	</label>
+	</div>
 
-	<label ng-class="{hide:!ctrl.showDest}">
+	<div class="label" ng-class="{hide:!ctrl.showDest}">
 		<span>Til</span>
 		<input-stop id="dest" placeholder="Holdeplass" model="ctrl.dest" initial-value="ctrl.destInitValue"></input-stop>
-	</label>
+	</div>
 	
 	&nbsp;
 	<div ng-show="ctrl.showDate" date-picker="ctrl.datetime" view="hours" max-view="month" min-view="hours"></div>
