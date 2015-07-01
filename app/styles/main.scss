@@ -137,8 +137,8 @@ button.now:hover {
 [date-picker] {
 	border-radius: 0;
 }
-[date-picker] td {
-	width: auto;
+[date-picker] table {
+	width: 100%;
 }
 [date-picker] .now, [date-picker] .now:hover {
 	color: inherit;
