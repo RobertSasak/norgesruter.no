@@ -28,6 +28,7 @@ angular.element(document).ready(function () {
         'ngStorage',
         'angular-cache',
         'datePicker',
+        require('angular-i18n/nb-no')
     ];
 
     // mount on window for testing
