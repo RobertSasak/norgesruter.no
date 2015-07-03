@@ -8,7 +8,7 @@ var Bloodhound = require('../../../../node_modules/typeahead.js/dist/bloodhound.
 /**
  * @ngInject
  */
-directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited, geolocation, AppSettings) {
+directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $templateCache, LastVisited, geolocation, AppSettings, Focus) {
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
@@ -17,6 +17,12 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 			var authKey = 'api-test';
 			var baseUrl = AppSettings.reiseinfoApi;
 			var limitHistory = 4;
+
+
+			vm.clear = function () {
+				Focus(vm.id + 'Input');
+				vm.model = null;
+			};
 
 			// Typeahead options object
 			vm.options = {

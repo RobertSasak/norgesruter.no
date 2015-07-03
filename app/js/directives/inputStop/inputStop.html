@@ -1,4 +1,4 @@
 <div class="input-wrapper">
-	<div ng-if="ctrl.model" ng-click="ctrl.model=undefined" class="input-clear"><i class="fa fa-times"></i></div>
+	<div ng-if="ctrl.model" ng-click="ctrl.clear()" class="input-clear"><i class="fa fa-times"></i></div>
 	<input type="text" class="sfTypeahead" options="ctrl.options" datasets="ctrl.datasets" ng-model="ctrl.model" id="{{ctrl.id}}Input" placeholder="{{ctrl.placeholder}}">
 </div>
