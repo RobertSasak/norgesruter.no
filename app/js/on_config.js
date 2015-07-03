@@ -10,7 +10,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('trip', {
-			url: '/trip?originId&originName&destId&destName',
+			url: '/trip?originId&originName&destId&destName&time&date',
 			templateUrl: 'trip.html',
 			controller: 'Trip',
 			controllerAs: 'ctrl'

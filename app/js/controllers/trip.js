@@ -1,6 +1,7 @@
 'use strict';
 
 var controllersModule = require('./_index');
+var moment = require('moment');
 
 /**
  * @ngInject
@@ -123,17 +124,32 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 			};
 		}
 
-		if ($stateParams.date) {
-			vm.date = $stateParams.date;
+		if ($stateParams.time) {
+			var a = moment($stateParams.time, 'HH:mm');
+			vm.datetime = moment(vm.datetime)
+				.hour(a.hour())
+				.minute(0)
+				.toDate();
 		}
 
-		if ($stateParams.time) {
-			vm.time = $stateParams.time;
+		if ($stateParams.date) {
+			var b = moment($stateParams.date, 'YYYY-MM-DD');
+			vm.datetime = moment(vm.datetime)
+				.year(b.year())
+				.month(b.month())
+				.date(b.date())
+				.toDate();
 		}
 	})();
 
 	// update url for every change
 	(function () {
+		var transitionOptions = {
+			location: 'replace',
+			inherit: true,
+			notify: false
+		};
+
 		$scope.$watch(function () {
 			return vm.origin;
 		}, function (value) {
@@ -141,11 +157,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 				$state.transitionTo('trip', {
 					originId: value.id,
 					originName: value.name
-				}, {
-					location: 'replace', //  update url and replace
-					inherit: true,
-					notify: false
-				});
+				}, transitionOptions);
 			}
 		});
 
@@ -156,13 +168,30 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 				$state.transitionTo('trip', {
 					destId: value.id,
 					destName: value.name
-				}, {
-					location: 'replace', //  update url and replace
-					inherit: true,
-					notify: false
-				});
+				}, transitionOptions);
 			}
 		});
+
+		$scope.$watch(function () {
+			return vm.options.date + vm.options.time;
+		}, function (value) {
+			if (value) {
+				if (moment(vm.datetime).isSame(moment(), 'day')) { // today
+					console.log(vm.datetime, value);
+					$state.transitionTo('trip', {
+						date: '',
+						time: vm.options.time
+					}, transitionOptions);
+				} else {
+					console.log('date', value);
+					$state.transitionTo('trip', {
+						date: vm.options.date,
+						time: vm.options.time
+					}, transitionOptions);
+				}
+			}
+		});
+
 	})();
 
 	// key bindings
