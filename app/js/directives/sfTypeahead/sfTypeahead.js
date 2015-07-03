@@ -2,6 +2,7 @@
 
 var directivesModule = require('../_index.js');
 var angular = require('angular');
+var $ = require('jquery');
 
 /**
  * @ngInject
@@ -19,6 +20,8 @@ directivesModule.directive('sfTypeahead', function () {
 			var options = scope.options || {},
 				datasets = (angular.isArray(scope.datasets) ? scope.datasets : [scope.datasets]) || [], // normalize to array
 				init = true;
+
+			element = $(element);
 
 			// Create the typeahead on the element
 			initialize();

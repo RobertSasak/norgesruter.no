@@ -2,6 +2,7 @@
 
 var directivesModule = require('../_index.js');
 var angular = require('angular');
+var $ = require('jquery');
 
 /**
  * @ngInject

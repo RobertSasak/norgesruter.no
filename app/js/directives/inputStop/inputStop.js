@@ -2,6 +2,9 @@
 
 var directivesModule = require('../_index.js');
 var angular = require('angular');
+var typehead = require('typeahead.js');
+var Bloodhound = require('../../../../node_modules/typeahead.js/dist/bloodhound.js');
+
 /**
  * @ngInject
  */
@@ -9,9 +12,8 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 	return {
 		restrict: 'E',
 		templateUrl: 'inputStop/inputStop.html',
-		controller: function ($window) {
+		controller: function () {
 			var vm = this;
-			var Bloodhound = $window.Bloodhound;
 			var authKey = 'api-test';
 			var baseUrl = AppSettings.reiseinfoApi;
 			var limitHistory = 4;
