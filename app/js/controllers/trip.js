@@ -177,13 +177,11 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		}, function (value) {
 			if (value) {
 				if (moment(vm.datetime).isSame(moment(), 'day')) { // today
-					console.log(vm.datetime, value);
 					$state.transitionTo('trip', {
 						date: '',
 						time: vm.options.time
 					}, transitionOptions);
 				} else {
-					console.log('date', value);
 					$state.transitionTo('trip', {
 						date: vm.options.date,
 						time: vm.options.time
