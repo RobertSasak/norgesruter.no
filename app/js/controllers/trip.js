@@ -62,6 +62,10 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		});
 	});
 
+	$scope.$on('destInput:close', function () {
+		Blur('destInput');
+	});
+
 	function moveToDest() {
 		if (!vm.dest) {
 			Focus('destInput');

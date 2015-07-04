@@ -11,6 +11,7 @@ servicesModule
 			$timeout(function () {
 				var element = $window.document.getElementById(id);
 				if (element) {
+					document.activeElement.blur();
 					element.blur();
 				}
 			});
