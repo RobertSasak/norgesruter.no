@@ -5,5 +5,5 @@ app/js/templates.js
 app/data
 resources
 release
-phonegap
+www
 .phonegap.json

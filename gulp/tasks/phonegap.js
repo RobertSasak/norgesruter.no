@@ -3,16 +3,24 @@
 var gulp = require('gulp');
 var phonegapBuild = require('gulp-phonegap-build');
 var config = require('../../.phonegap.json');
+var version = require('../../package.json').version;
+var pathWithoutExt = 'release/norgesruter' + version;
 
-gulp.task('phonegap-build', [], function () {
-    gulp.src(['build/**/*', 'config.xml', 'resource*/**/*.png'])
-        //.pipe(gulp.dest('./phonegap'))
+var files = ['build/**/*', 'config.xml', 'resource*/**/*.png'];
+
+gulp.task('phonegap-www', ['prod'], function () {
+    gulp.src(files)
+        .pipe(gulp.dest('./phonegap'));
+});
+
+gulp.task('phonegap-build', ['prod'], function () {
+    gulp.src(files)
         .pipe(phonegapBuild({
             timeout: 2000000,
             download: {
-                ios: 'release/norgesruter.ipa',
-                android: 'release/norgesruter.apk',
-                winphone: 'release/norgesruter.xap'
+                ios: pathWithoutExt + '.ipa',
+                android: pathWithoutExt + '.apk',
+                winphone: pathWithoutExt + '.xap'
             },
             appId: config.appId,
             user: config.user,
