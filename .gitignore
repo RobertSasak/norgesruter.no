@@ -2,7 +2,6 @@
 build
 node_modules
 app/js/templates.js
-app/data
 resources
 release
 www
