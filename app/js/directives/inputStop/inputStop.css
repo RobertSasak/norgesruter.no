@@ -1,5 +1,5 @@
 .input-wrapper{
-    position: relative;
+  position: relative;
 }
 
 .input-clear {
@@ -17,8 +17,8 @@
 }
 
 .input-clear:hover {
-    background-color: #eee;
-    border-radius: 0.5em;
+  background-color: #eee;
+  border-radius: 0.5em;
 }
 
 .tt-suggestion .fa {
@@ -97,4 +97,10 @@
 
 .twitter-typeahead {
   display: block !important;
+}
+
+@media print {
+  .input-clear {
+    display: none;
+}
 }

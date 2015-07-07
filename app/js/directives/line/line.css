@@ -8,3 +8,10 @@
 	margin-right: 0.5em;
 	border-radius: 0.5em;
 }
+
+@media print {
+	.line {
+		color: black;
+		background: none;
+	}
+}

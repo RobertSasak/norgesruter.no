@@ -165,3 +165,22 @@ button.now:hover {
 // End date
 
 
+@media print {
+	body { 
+		background: none; 
+		color: black;
+	}
+
+	.label {
+		color: black;
+	}
+
+	.wrapper {
+		background: none;
+		max-width: 98%;
+	}
+
+	.noPrint { 
+		display: none;
+	}
+}

@@ -15,6 +15,16 @@
 	}
 }
 
+@media print {
+	.journeyWrapper {
+		border: 1px solid black;
+	}
+
+	.toggle {
+		display: none;
+	}
+}
+
 .journey table {
 	width: 100%;
 }
