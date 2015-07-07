@@ -26,7 +26,10 @@ module.exports = {
     },
 
     'fonts': {
-        'src': ['app/fonts/**/*'],
+        'src': [
+            'node_modules/font-awesome*/css/font-awesome.min.css',
+            'node_modules/font-awesome*/fonts/*'
+        ],
         'dest': 'build/fonts'
     },
 

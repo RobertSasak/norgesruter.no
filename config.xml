@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widgetx
+<widget
     id="sk.sasak.norgesruter"
     version="versionFromPackageJson"
     xmlns="http://www.w3.org/ns/widgets"
@@ -14,7 +14,7 @@
     <content src="index.html" />
     <preference name="permissions" value="none"/>
     <feature name="http://api.phonegap.com/1.0/geolocation" />
-    
+
     <plugin name="cordova-plugin-whitelist" version="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
