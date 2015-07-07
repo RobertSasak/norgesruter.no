@@ -51,7 +51,9 @@ gulp.task('phonegap-build', function () {
         }));
 });
 
-gulp.task('phonegap', function (cb) {
+gulp.task('phonegap-www', function (cb) {
     var runSequence = require('run-sequence');
-    runSequence(['prod', 'phonegap-clean'], 'phonegap-copy', ['insert-cordova-js', 'phonegap-version'], 'phonegap-build', cb);
+    runSequence(['prod', 'phonegap-clean'], 'phonegap-copy', ['insert-cordova-js', 'phonegap-version'], cb);
 });
+
+gulp.task('phonegap', ['phonegap-www', 'phonegap']);
