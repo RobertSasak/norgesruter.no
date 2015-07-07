@@ -69,6 +69,11 @@ module.exports = {
 
     deploy: {
         cname: 'www.norgesruter.no'
+    },
+
+    data: {
+        src: 'app/data/**/*',
+        dest: 'build/data',
     }
 
 };

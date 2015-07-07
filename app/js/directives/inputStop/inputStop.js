@@ -32,17 +32,6 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				minLength: 0
 			};
 
-			// maximum 33000 for {id,name}
-			// maximum 34000 for {i,n}
-			function transformMinify(array) {
-				return array.slice(0, 30000).map(function (a) {
-					return {
-						id: a.id,
-						name: a.name
-					};
-				});
-			}
-
 			function unwrap(response) {
 				var sl = response.LocationList.StopLocation;
 				if (!sl) {
@@ -83,9 +72,6 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				},
 				prefetch: {
 					url: '/data/allStops.json',
-					transform: function (response) {
-						return addSource(transformMinify(response), 'local');
-					},
 					ttl: 14 * 24 * 60 * 60 * 1000
 				},
 				local: LastVisited.getAll(),
@@ -135,6 +121,9 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 				limit: 30,
 				templates: {
 					suggestion: function (params) {
+						if (!params.source) {
+							params.source = 'local';
+						}
 						return $interpolate(suggestionTemplate)(params);
 					}
 				},
