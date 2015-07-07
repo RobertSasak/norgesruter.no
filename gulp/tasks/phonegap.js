@@ -1,39 +1,43 @@
 'use strict';
 
 var gulp = require('gulp');
-var phonegapBuild = require('gulp-phonegap-build');
-var insertLines = require('gulp-insert-lines');
-var config = require('../../.phonegap.json');
 var version = require('../../package.json').version;
-var pathWithoutExt = 'release/norgesruter.' + version;
-var replace = require('gulp-replace');
 
-gulp.task('templates', function () {
-    gulp.src(['file.txt'])
-        .pipe(gulp.dest('build/file.txt'));
+gulp.task('phonegap-clean', function (cb) {
+    var del = require('del');
+    del(['www'], cb);
 });
 
-var files = ['build/**/*', 'config.xml', 'resource*/**/*.png'];
-
-
-gulp.task('insert-cordova-js', ['prod'], function () {
-    gulp.src('./build/index.html')
+gulp.task('insert-cordova-js', function () {
+    var insertLines = require('gulp-insert-lines');
+    return gulp.src('./www/index.html')
         .pipe(insertLines({
             'before': /<\/head>$/,
             'lineBefore': '<script src="cordova.js"></script>'
         }))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('./www'));
 });
 
-gulp.task('phonegap-www', ['insert-cordova-js'], function () {
-    gulp.src(files)
+gulp.task('phonegap-copy', function () {
+    return gulp.src(['build/**/*', 'config.xml', 'resource*/**/*.png'])
+        .pipe(gulp.dest('./www'));
+});
+
+gulp.task('phonegap-version', function () {
+    var replace = require('gulp-replace');
+    return gulp.src('www/config.xml')
         .pipe(replace('versionFromPackageJson', version))
         .pipe(gulp.dest('./www'));
 });
 
-gulp.task('phonegap-build', ['insert-cordova-js'], function () {
-    gulp.src(files)
-        .pipe(replace('versionFromPackageJson', version))
+gulp.task('phonegap-build', function () {
+    var file = require('gulp-file');
+    var phonegapBuild = require('gulp-phonegap-build');
+    var config = require('../../.phonegap.json');
+    var pathWithoutExt = 'release/norgesruter.' + version;
+
+    return gulp.src('./www/**/*')
+        .pipe(file('resources/.pgbomit', ''))
         .pipe(phonegapBuild({
             timeout: 2000000,
             download: {
@@ -45,4 +49,9 @@ gulp.task('phonegap-build', ['insert-cordova-js'], function () {
             user: config.user,
             keys: config.keys
         }));
+});
+
+gulp.task('phonegap', function (cb) {
+    var runSequence = require('run-sequence');
+    runSequence(['prod', 'phonegap-clean'], 'phonegap-copy', ['insert-cordova-js', 'phonegap-version'], 'phonegap-build', cb);
 });
