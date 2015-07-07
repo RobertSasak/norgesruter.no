@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var version = require('../../package.json').version;
+var runSequence = require('run-sequence');
 
 gulp.task('phonegap-clean', function (cb) {
     var del = require('del');
@@ -52,8 +53,9 @@ gulp.task('phonegap-build', function () {
 });
 
 gulp.task('phonegap-www', function (cb) {
-    var runSequence = require('run-sequence');
     runSequence(['prod', 'phonegap-clean'], 'phonegap-copy', ['insert-cordova-js', 'phonegap-version'], cb);
 });
 
-gulp.task('phonegap', ['phonegap-www', 'phonegap']);
+gulp.task('phonegap', function (cb) {
+    runSequence('phonegap-www', 'phonegap-build', cb);
+});
