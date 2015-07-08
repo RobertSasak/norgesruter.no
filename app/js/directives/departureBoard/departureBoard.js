@@ -31,7 +31,9 @@ directivesModule.directive('departureBoard', function () {
 			}
 
 			if (vm.autoUpdate) {
-				$interval(getData, updateInterval);
+				$interval(function () {
+					getData(vm.id);
+				}, updateInterval);
 			}
 		},
 		controllerAs: 'ctrl',
