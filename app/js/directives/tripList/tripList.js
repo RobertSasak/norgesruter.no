@@ -63,6 +63,7 @@ directivesModule.directive('tripList', function (Trip) {
 					load(vm.originId, vm.destId, vm.options);
 				}
 			}
+			vm.more = more;
 
 			function unique(list) {
 				var seen = {};
