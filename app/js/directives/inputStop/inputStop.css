@@ -4,7 +4,7 @@
 
 .input-clear {
   position: absolute;
-  z-index: 10;
+  z-index: 100;
   right: 8px;
   top: 8px;
   color: black;
@@ -14,11 +14,13 @@
   vertical-align: middle;
   line-height: 2em;
   cursor: pointer;
+  background-color: white;
+  box-shadow: 0 0 .1em .3em white;
+  border-radius: 0.5em;
 }
 
 .input-clear:hover {
   background-color: #eee;
-  border-radius: 0.5em;
 }
 
 .tt-suggestion .fa {
@@ -102,5 +104,5 @@
 @media print {
   .input-clear {
     display: none;
-}
+  }
 }
