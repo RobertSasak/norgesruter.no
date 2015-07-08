@@ -49,7 +49,7 @@
         "gulp-html-minifier": "^0.1.6",
         "gulp-if": "^1.2.5",
         "gulp-imagemin": "^1.1.0",
-        "gulp-insert-lines": "0.0.4",
+        "gulp-inject-string": "0.0.2",
         "gulp-jshint": "^1.8.3",
         "gulp-karma": "0.0.4",
         "gulp-notify": "^2.0.0",

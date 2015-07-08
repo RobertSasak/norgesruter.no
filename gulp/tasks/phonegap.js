@@ -10,12 +10,9 @@ gulp.task('phonegap-clean', function (cb) {
 });
 
 gulp.task('insert-cordova-js', function () {
-    var insertLines = require('gulp-insert-lines');
+    var inject = require('gulp-inject-string');
     return gulp.src('./www/index.html')
-        .pipe(insertLines({
-            'before': /<\/head>$/,
-            'lineBefore': '<script src="cordova.js"></script>'
-        }))
+        .pipe(inject.before('</head>', '<script src="cordova.js"></script>'))
         .pipe(gulp.dest('./www'));
 });
 
