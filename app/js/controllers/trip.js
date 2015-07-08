@@ -12,6 +12,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 	vm.showDest = true;
 	vm.showDate = true;
 	vm.showResults = true;
+	vm.showDepartures = true;
 	vm.options = {};
 	vm.datetime = new Date();
 
@@ -37,6 +38,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 			vm.showDest = false;
 			vm.showDate = false;
 			vm.showResults = false;
+			vm.showDepartures = false;
 		});
 	});
 
@@ -45,6 +47,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 			vm.showDest = true;
 			vm.showDate = true;
 			vm.showResults = true;
+			vm.showDepartures = true;
 		});
 	});
 
@@ -52,6 +55,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		$scope.$apply(function () {
 			vm.showResults = false;
 			vm.showDate = false;
+			vm.showDepartures = false;
 		});
 	});
 
@@ -59,6 +63,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		$scope.$apply(function () {
 			vm.showResults = true;
 			vm.showDate = true;
+			vm.showDepartures = true;
 		});
 	});
 
@@ -66,16 +71,16 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		Blur('destInput');
 	});
 
-	function moveToDest() {
-		if (!vm.dest) {
-			Focus('destInput');
-		} else {
-			Blur('originInput');
-		}
-	}
+	// function moveToDest() {
+	// 	if (!vm.dest) {
+	// 		Focus('destInput');
+	// 	} else {
+	// 		Blur('originInput');
+	// 	}
+	// }
 
-	$scope.$on('originInput:selected', moveToDest);
-	$scope.$on('originInput:autocompleted', moveToDest);
+	// $scope.$on('originInput:selected', moveToDest);
+	// $scope.$on('originInput:autocompleted', moveToDest);
 
 	if (!$stateParams.originId && !$stateParams.destId) {
 		Focus('originInput');

@@ -1,16 +1,12 @@
-<table>
-	<thead>
-		<tr>
-			<th>Time</th>
-			<th>Type</th>
-			<th>Direction</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="d in ctrl.board">
-			<td ng-bind="::d.time"></td>
-			<td><line type="::d.type" number="::d.local"></line></td>
-			<td ng-bind="::d.direction"></td>
-		</tr>
-	</tbody>
-</table>
+<div class="board">
+	<h2 ng-show="ctrl.board">Alle avganger</h2>
+	<table>
+		<tbody>
+			<tr ng-repeat="d in ctrl.board">
+				<td ng-bind="::d.time"></td>
+				<td><line type="::d.type" number="::d.local"></line></td>
+				<td ng-bind="::d.direction"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,24 @@
+.board {
+	color: black;
+}
+
+.board table {
+	margin-top: -0.4em;
+	width: 100%;
+	border-collapse:separate; 
+	border-spacing: 0 0.5em;
+}
+
+.board table tr td {
+	padding: 0.5em;
+	background-color: white;
+	margin-bottom: .4em;
+}
+
+.board h2 {
+	font-size: 1.2em;
+	font-weight: 600;
+	color: white;
+	margin: 0;
+	padding: 0;
+}

@@ -11,8 +11,11 @@
 	</div>
 	
 	&nbsp;
-	<div ng-show="ctrl.showDate" date-picker="ctrl.datetime" view="hours" max-view="month" min-view="hours"></div>
+	<div ng-show="ctrl.dest.id && ctrl.showDate" date-picker="ctrl.datetime" view="hours" max-view="month" min-view="hours"></div>
 	&nbsp;
+
+	<departure-board ng-if="ctrl.showDepartures && !ctrl.dest.id" id="ctrl.origin.id" auto-update="false"></departure-board>
+
 	
 	<trip-list ng-show="ctrl.showResults" origin-id="ctrl.origin.id" dest-id="ctrl.dest.id" options="ctrl.options"></trip-list>
 

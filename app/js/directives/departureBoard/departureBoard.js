@@ -10,21 +10,25 @@ directivesModule.directive('departureBoard', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'departureBoard/departureBoard.html',
-		controller: function (ReiseInfo, $interval) {
+		controller: function ($scope, ReiseInfo, $interval) {
 			var vm = this;
 			var updateInterval = 60000;
 
-			var options = angular.extend([], {
-				id: vm.id,
-			}, vm.options);
+			$scope.$watch(function () {
+				return vm.id;
+			}, function (id) {
+				getData(id);
+			});
 
-			function getData() {
+			function getData(id) {
+				var options = angular.extend([], {
+					id: id,
+				}, vm.options);
+
 				ReiseInfo.departureBoard(options).then(function (data) {
 					vm.board = data.DepartureBoard.Departure;
 				});
 			}
-
-			getData();
 
 			if (vm.autoUpdate) {
 				$interval(getData, updateInterval);
