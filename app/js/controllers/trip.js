@@ -167,6 +167,11 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 					originId: value.id,
 					originName: value.name
 				}, transitionOptions);
+			} else {
+				$state.transitionTo('trip', {
+					originId: undefined,
+					originName: undefined
+				}, transitionOptions);
 			}
 		});
 
@@ -178,6 +183,11 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 					destId: value.id,
 					destName: value.name
 				}, transitionOptions);
+			} else {
+				$state.transitionTo('trip', {
+					destId: undefined,
+					destName: undefined
+				}, transitionOptions);
 			}
 		});
 
@@ -187,7 +197,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 			if (value) {
 				if (moment(vm.datetime).isSame(moment(), 'day')) { // today
 					$state.transitionTo('trip', {
-						date: '',
+						date: undefined,
 						time: vm.options.time
 					}, transitionOptions);
 				} else {
@@ -196,6 +206,11 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 						time: vm.options.time
 					}, transitionOptions);
 				}
+			} else {
+				$state.transitionTo('trip', {
+					date: undefined,
+					time: undefined
+				}, transitionOptions);
 			}
 		});
 
