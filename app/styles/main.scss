@@ -200,3 +200,9 @@ button.now:hover {
 .credit a {
 	color: white;
 }
+
+@media screen and (max-width:35.5em) {
+	.credit {
+		display: none;
+	}
+}
