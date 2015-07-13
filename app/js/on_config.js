@@ -14,18 +14,6 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 			templateUrl: 'trip.html',
 			controller: 'Trip',
 			controllerAs: 'ctrl'
-		})
-		.state('departures', {
-			url: '/departures/:id',
-			templateUrl: 'departures.html',
-			controller: 'Departures',
-			controllerAs: 'ctrl'
-		})
-		.state('arrivals', {
-			url: '/arrivals/:id',
-			templateUrl: 'arrivals.html',
-			controller: 'Arrivals as ctrl',
-			controllerAs: 'ctrl'
 		});
 
 	$urlRouterProvider.otherwise('/trip');
