@@ -186,15 +186,29 @@ button.now:hover {
 	}
 }
 
+html, body { 
+	height: 100%;
+}
+
+.page {
+	position: relative;
+	min-height: 100%;
+	overflow:auto;
+	padding-bottom: 3em;
+}
+
 .credit {
+	position: absolute;
+	right: 2em;
+	bottom: 0.5em;
 	margin-top:1em;
 	text-align:center;
 	color: white;
 }
 
-
 .credit .heart {
 	font-family: arial;
+	color: #E60000;
 }
 
 .credit a {
