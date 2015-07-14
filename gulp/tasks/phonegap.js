@@ -17,7 +17,7 @@ gulp.task('insert-cordova-js', function () {
 });
 
 gulp.task('phonegap-copy', function () {
-    return gulp.src(['build/**/*', 'config.xml', 'resource*/**/*.png'])
+    return gulp.src(['build/**/*', 'app/config.xml', 'resource*/**/*.png'])
         .pipe(gulp.dest('./www'));
 });
 
