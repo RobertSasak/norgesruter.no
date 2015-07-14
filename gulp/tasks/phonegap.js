@@ -56,3 +56,19 @@ gulp.task('phonegap-www', function (cb) {
 gulp.task('phonegap', function (cb) {
     runSequence('phonegap-www', 'phonegap-build', cb);
 });
+
+gulp.task('phonegap-inject-winstore', function () {
+    var inject = require('gulp-inject-string');
+    return gulp.src('./www/index.html')
+        .pipe(inject.after('<head>', '<script src="winstore-jscompat.js"></script>'))
+        .pipe(gulp.dest('./www'));
+});
+
+gulp.task('phonegap-add-winstore', function () {
+    return gulp.src('app/js/winstore-jscompat.js')
+        .pipe(gulp.dest('./www'));
+});
+
+gulp.task('phonegap-win', function (cb) {
+    runSequence('phonegap-www', 'phonegap-inject-winstore', 'phonegap-add-winstore', cb);
+});
