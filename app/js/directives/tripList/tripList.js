@@ -7,7 +7,7 @@ var $ = require('jquery');
 /**
  * @ngInject
  */
-directivesModule.directive('tripList', function (Trip) {
+directivesModule.directive('tripList', function (Trip, $analytics) {
 	return {
 		restrict: 'E',
 		templateUrl: 'tripList/tripList.html',
@@ -60,6 +60,9 @@ directivesModule.directive('tripList', function (Trip) {
 
 			function more() {
 				if (!vm.isSearching) {
+					$analytics.eventTrack('loadMore', {
+						category: 'tripList',
+					});
 					load(vm.originId, vm.destId, vm.options);
 				}
 			}
@@ -73,8 +76,10 @@ directivesModule.directive('tripList', function (Trip) {
 			}
 
 			$(window).scroll(function () {
-				if ($(window).scrollTop() + $(window).height() === $(document).height()) {
-					more();
+				if (vm.list.length) {
+					if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+						more();
+					}
 				}
 			});
 		},

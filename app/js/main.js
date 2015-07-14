@@ -13,6 +13,9 @@ require('angular-hotkeys');
 require('ngstorage');
 require('angular-cache');
 require('angular-datepicker');
+require('angulartics');
+require('../../node_modules/angulartics/src/angulartics-ga.js');
+
 
 // create and bootstrap application
 angular.element(document).ready(function () {
@@ -28,7 +31,9 @@ angular.element(document).ready(function () {
         'ngStorage',
         'angular-cache',
         'datePicker',
-        require('angular-i18n/nb-no')
+        require('angular-i18n/nb-no'),
+        'angulartics',
+        'angulartics.google.analytics'
     ];
 
     // mount on window for testing

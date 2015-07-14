@@ -3,7 +3,7 @@
 	<div>
 		
 		<div ng-repeat="journey in ctrl.list" class="journeyWrapper">
-			<div ng-click="journey.show=!journey.show" class="journey">
+			<div ng-click="journey.show=!journey.show" class="journey" analytics-on="click" analytics-event="toggle" analytics-category="tripList">
 				<table>
 					<tr>
 						<td class="start" ng-bind="journey.startTime"></td>
@@ -22,7 +22,7 @@
 				</table>
 			</div>
 
-			<div ng-if="journey.show" ng-click="journey.show=false" class="legs">
+			<div ng-if="journey.show" ng-click="journey.show=false" class="legs" analytics-on="click" analytics-event="close" analytics-category="tripList">
 				<table>
 					<tbody ng-repeat="leg in journey.legs" class="leg">
 						<tr class="deliminer"><td colspan="6"></td></tr>

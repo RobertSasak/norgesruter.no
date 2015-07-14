@@ -6,7 +6,7 @@ var moment = require('moment');
 /**
  * @ngInject
  */
-controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited, $filter) {
+controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited, $filter, $analytics) {
 	var vm = this;
 
 	vm.showDest = true;
@@ -227,5 +227,41 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 				}
 			});
 	})();
+
+	// analytics
+	(function () {
+		var filterDate = $filter('date');
+
+		$scope.$watch(function () {
+			return vm.datetime;
+		}, function (value, oldValue) {
+			if (value) {
+				var date = filterDate(value, 'dd');
+				var oldDate = filterDate(oldValue, 'dd');
+				if (date !== oldDate) {
+					$analytics.eventTrack('dateChange', {
+						category: 'trip',
+					});
+				}
+
+				var hour = filterDate(value, 'HH');
+				var oldHour = filterDate(oldValue, 'HH');
+				if (hour !== oldHour) {
+					$analytics.eventTrack('hourChange', {
+						category: 'trip',
+					});
+				}
+
+				var month = filterDate(value, 'MM');
+				var oldMount = filterDate(oldValue, 'MM');
+				if (month !== oldMount) {
+					$analytics.eventTrack('monthChange', {
+						category: 'trip',
+					});
+				}
+			}
+		});
+	})();
+
 
 });
