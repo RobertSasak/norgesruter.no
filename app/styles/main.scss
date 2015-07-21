@@ -12,7 +12,7 @@ body {
 	font-family: 'Open Sans',sans-serif;;
 	color: rgb(102, 102, 102);
 	margin: 0;
-	background-color: #0ca7c6;
+	background-color: #E60000;
 }
 
 @media screen and (min-width:35.5em) {
@@ -37,7 +37,7 @@ body {
 
 .wrapper {
 	max-width: 35.5em;
-	background-color: #0ca7c6;
+	background-color: #E60000;
 	color: white;
 }
 
@@ -147,7 +147,7 @@ button.now:hover {
 	background-image: none;
 }
 [date-picker] .now.active, [date-picker] .active, [date-picker] .active.active, [date-picker] .active:hover {
-	background-color: #0CA7C6;
+	background-color: #E60000;
 	background-image: none;
 }
 [date-picker] {
