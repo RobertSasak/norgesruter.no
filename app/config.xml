@@ -4,7 +4,6 @@
     version="versionFromPackageJson"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:gap="http://phonegap.com/ns/1.0"
-    version="versionFromPackageJson"
     defaultlocale="nb-no">
     <name>Norgesruter</name>
     <description>
@@ -49,10 +48,6 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" gap:platform="android" gap:qualifier="xhdpi"/>
     <icon src="resources/android/icon/drawable-xxhdpi-icon.png" gap:platform="android" gap:qualifier="xxhdpi"/>
     <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" gap:platform="android" gap:qualifier="xxxhdpi"/>
-
-    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" gap:platform="winphone" />
-    <icon src="tileicon.png" gap:platform="winphone" gap:role="background" />
-
 
     <!-- Windows -->
     <preference name="BackgroundColor" value="0xffE20022"/>
