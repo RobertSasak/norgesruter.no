@@ -5,17 +5,19 @@
  */
 function OnRun($rootScope, AppSettings) {
 
-  // change page title based on state
-  $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-    $rootScope.pageTitle = '';
+	$rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
+		$rootScope.pageTitle = '';
+		console.log(toParams);
+		if (toParams.originName) {
+			$rootScope.pageTitle += toParams.originName;
 
-    if ( toState.title ) {
-      $rootScope.pageTitle += toState.title;
-      $rootScope.pageTitle += ' \u2014 ';
-    }
-
-    $rootScope.pageTitle += AppSettings.appTitle;
-  });
+			if (toParams.destName) {
+				$rootScope.pageTitle += ' → ' + toParams.destName;
+			}
+		} else {
+			$rootScope.pageTitle = AppSettings.appTitle;
+		}
+	});
 
 }
 

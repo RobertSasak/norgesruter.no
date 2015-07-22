@@ -156,7 +156,7 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		var transitionOptions = {
 			location: 'replace',
 			inherit: true,
-			notify: false
+			notify: true
 		};
 
 		$scope.$watch(function () {
