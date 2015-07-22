@@ -3,12 +3,14 @@
     id="sk.sasak.norgesruter"
     version="versionFromPackageJson"
     xmlns="http://www.w3.org/ns/widgets"
-    xmlns:gap="http://phonegap.com/ns/1.0">
+    xmlns:gap="http://phonegap.com/ns/1.0"
+    version="versionFromPackageJson"
+    defaultlocale="nb-no">
     <name>Norgesruter</name>
     <description>
         Journey planner for public transport in Norway.
     </description>
-    <author email="robert.sasak@gmail.com" href="http://robert.sasak.sk">
+    <author email="robert.sasak@gmail.com" href="http://sasak.sk">
         Robert Sasak
     </author>
     <content src="index.html" />
@@ -54,6 +56,7 @@
 
     <!-- Windows -->
     <preference name="BackgroundColor" value="0xffE20022"/>
+    <preference name="windows-target-version" value="8.1"/>
     <platform name="windows">
         <icon src="resources/windows/icon/Square150x150Logo.scale-100.png" width="150" height="150" />
         <icon src="resources/windows/icon/Square150x150Logo.scale-240.png" width="360" height="360" />
