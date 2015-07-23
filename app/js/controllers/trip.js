@@ -71,16 +71,12 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		Blur('destInput');
 	});
 
-	// function moveToDest() {
-	// 	if (!vm.dest) {
-	// 		Focus('destInput');
-	// 	} else {
-	// 		Blur('originInput');
-	// 	}
-	// }
+	function blurOrigin() {
+		Blur('originInput');
+	}
 
-	// $scope.$on('originInput:selected', moveToDest);
-	// $scope.$on('originInput:autocompleted', moveToDest);
+	$scope.$on('originInput:selected', blurOrigin);
+	$scope.$on('originInput:autocompleted', blurOrigin);
 
 	if (!$stateParams.originId && !$stateParams.destId) {
 		Focus('originInput');
