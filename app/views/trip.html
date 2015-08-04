@@ -1,5 +1,9 @@
 <div class="wrapper">
 
+	<div class="headline desktopOnly">
+		<h1><img src="images/icon1200.png" width="50" height="50"> Norgesruter</h1>
+	</div>
+
 	<div class="label">
 		<span>Fra</span>
 		<input-stop id="origin" placeholder="Holdeplass" model="ctrl.origin" initial-value="ctrl.originInitValue"></input-stop>
@@ -18,5 +22,17 @@
 
 	
 	<trip-list ng-show="ctrl.showResults" origin-id="ctrl.origin.id" dest-id="ctrl.dest.id" options="ctrl.options"></trip-list>
+
+	<div class="info onlyDesktop" ng-hide="!ctrl.showResults || ctrl.origin.id || ctrl.dest.id">
+		<p>Med Norgesruter kan du enkelt planlegge din kollektivreise.  Appen og nettsiden henter reiseinformasjon fra hele landet og alle aktører – både på buss, bane, tog, trikk, båt og fly.</p>
+
+		<p>Reiseruter er gratis, den er rask og enkel å bruke, og er helt fri for irriterende annonser. Den finner nærmeste holdeplass til der du befinner deg eller du kan søke blant mer enn 45.000 holdeplasser og stasjoner. Du kan se alle avganger fra din holdeplass.</p>
+
+		<p>Reiseruter gjør det lett å planlegge en reise gjennom flere fylker, du finner all informasjon på ett sted. Med en enkel kalender velger du kjapt ønsket avgangstid.</p>
+
+		<p>Reisealternativene vises i en oversiktlig liste med transportsymboler og rutenavn. Klikk på et av alternativene og se detaljert informasjon med avgangs- og ankomsttidspunkt for de ulike delene av reisen.</p>
+
+		Norgesruter er tilgjengelig både som en <a href="http://www.norgesruter.no">nettside</a> og som en app for <a href="https://play.google.com/store/apps/details?id=sk.sasak.norgesruter">Andrioid</a>, Windows, iPhone og iPad.
+	</div>
 
 </div>

@@ -17,7 +17,7 @@ body {
 
 @media screen and (min-width:35.5em) {
 	.wrapper {
-		margin: 5em auto 0 auto;
+		margin: 3em auto 0 auto;
 		padding: 2em;
 		background-color: rgba(12,167,198,0.94);
 	}
@@ -265,4 +265,21 @@ html, body {
 	margin-top:1em;
 	text-align:center;
 	color: white;
+}
+
+.info {
+	font-size: 1.2em;
+}
+
+.info a {
+	color: white;
+}
+
+.headline h1 {
+	font-weight: bold;
+	font-size: 2em;
+}
+
+.headline img {
+	vertical-align: middle;
 }
