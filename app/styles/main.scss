@@ -217,7 +217,52 @@ html, body {
 }
 
 @media screen and (max-width:35.5em) {
-	.credit {
+	.onlyDesktop {
 		display: none;
 	}
+}
+
+@media screen and (max-width:47em) {
+	.sharer {
+		display: none;
+	}
+}
+
+.sharer {
+	position: fixed;
+	left: 0;
+	top: 5em;
+	padding: 5px;
+	background: rgba(230, 0, 0, 1);
+	border-radius: 0 1em 1em 0;
+	transform: translateX(-80px) translateZ(0);
+	animation: cssAnimation .5s ease-in 5s forwards;
+}
+
+@keyframes cssAnimation {
+	100% {
+		transform: translateX(0) translateZ(0);
+	}
+}
+
+.sharer .icon {
+	font-size: 50px;
+	line-height: 60px;
+	text-decoration: none;
+	color: white;
+	display: block;
+	transition: .2s ease all;
+}
+
+.sharer .icon:hover {
+	font-size: 55px;
+}
+
+.share {
+	position: absolute;
+	left: 2em;
+	bottom: 0.5em;
+	margin-top:1em;
+	text-align:center;
+	color: white;
 }
