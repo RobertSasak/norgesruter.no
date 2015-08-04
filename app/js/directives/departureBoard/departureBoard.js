@@ -21,15 +21,17 @@ directivesModule.directive('departureBoard', function () {
 			});
 
 			function getData(id) {
-				var options = angular.extend([], {
-					id: id,
-				}, vm.options);
+				if (id) {
+					var options = angular.extend([], {
+						id: id,
+					}, vm.options);
 
-				ReiseInfo.departureBoard(options).then(function (data) {
-					if (data && data.DepartureBoard) {
-						vm.board = data.DepartureBoard.Departure;
-					}
-				});
+					ReiseInfo.departureBoard(options).then(function (data) {
+						if (data && data.DepartureBoard) {
+							vm.board = data.DepartureBoard.Departure;
+						}
+					});
+				}
 			}
 
 			if (vm.autoUpdate) {
