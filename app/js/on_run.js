@@ -7,7 +7,6 @@ function OnRun($rootScope, AppSettings) {
 
 	$rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
 		$rootScope.pageTitle = '';
-		console.log(toParams);
 		if (toParams.originName) {
 			$rootScope.pageTitle += toParams.originName;
 
