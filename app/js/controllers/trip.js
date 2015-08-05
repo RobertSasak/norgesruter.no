@@ -191,11 +191,13 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 			return vm.options.date + vm.options.time;
 		}, function (value) {
 			if (value) {
-				if (moment(vm.datetime).isSame(moment(), 'day')) { // today
-					$state.transitionTo('trip', {
-						date: undefined,
-						time: vm.options.time
-					}, transitionOptions);
+				if (moment(vm.datetime).isSame(moment(), 'day')) { // the same day
+					if (!moment(vm.datetime).isSame(moment(), 'hour')) { // not the same hour
+						$state.transitionTo('trip', {
+							date: undefined,
+							time: vm.options.time
+						}, transitionOptions);
+					}
 				} else {
 					$state.transitionTo('trip', {
 						date: vm.options.date,
