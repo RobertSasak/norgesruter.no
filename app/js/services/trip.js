@@ -35,11 +35,14 @@ function normalizeLeg(l) {
 function normalize(list) {
     var r = [];
 
+    if (!angular.isArray(list)) {
+        list = [list];
+    }
+
     angular.forEach(list, function (j) {
         var journey = {},
             first,
             last;
-
 
         journey.isDirect = !angular.isArray(j.LegList.Leg);
 
