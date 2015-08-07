@@ -28,6 +28,9 @@ directivesModule.directive('departureBoard', function () {
 
 					ReiseInfo.departureBoard(options).then(function (data) {
 						if (data && data.DepartureBoard) {
+							if (!angular.isArray(data.DepartureBoard.Departure)) {
+								data.DepartureBoard.Departure = [data.DepartureBoard.Departure];
+							}
 							vm.board = data.DepartureBoard.Departure;
 						}
 					});
