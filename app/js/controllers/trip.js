@@ -6,7 +6,7 @@ var moment = require('moment');
 /**
  * @ngInject
  */
-controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited, $filter, $analytics) {
+controllersModule.controller('Trip', function ($state, $stateParams, $scope, Focus, Blur, hotkeys, LastVisited, $filter, $analytics, AppSettings, $rootScope) {
 	var vm = this;
 
 	vm.showDest = true;
@@ -147,12 +147,31 @@ controllersModule.controller('Trip', function ($state, $stateParams, $scope, Foc
 		}
 	})();
 
+	// update title
+	(function () {
+		$scope.$watch(function () {
+			return vm.origin + vm.dest;
+		}, function () {
+			var title = '';
+			if (vm.origin) {
+				title += vm.origin.name;
+
+				if (vm.dest) {
+					title += ' → ' + vm.dest.name;
+				}
+			} else {
+				title = AppSettings.appTitle;
+			}
+			$rootScope.pageTitle = title;
+		});
+	})();
+
 	// update url for every change
 	(function () {
 		var transitionOptions = {
 			location: 'replace',
 			inherit: true,
-			notify: true
+			notify: false
 		};
 
 		$scope.$watch(function () {
