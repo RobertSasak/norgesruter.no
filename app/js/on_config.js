@@ -17,7 +17,9 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $urlMat
 			console.log(str);
 			return str && str.replace(/-/g, ' ');
 		},
-		is: angular.isString,
+		is: function (str) {
+			return angular.isString(str) && str.indexOf('-') < 0;
+		},
 		pattern: /[^/]+/
 	});
 
