@@ -11,7 +11,7 @@ function ReiseInfo($q, $http, CacheFactory, AppSettings) {
     var service = {};
     var baseUrl = AppSettings.reiseinfoApi;
     var defaultParams = {
-        authKey: 'api-test',
+        authKey: AppSettings.authKey,
         format: 'json'
     };
 
