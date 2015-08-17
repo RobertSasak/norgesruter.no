@@ -17,38 +17,50 @@ require('angulartics');
 require('../../node_modules/angulartics/src/angulartics-ga.js');
 
 
-// create and bootstrap application
-angular.element(document).ready(function () {
+function bootstrap() {
+    // create and bootstrap application
+    angular.element(document).ready(function () {
 
-    var requires = [
-        'ui.router',
-        'templates',
-        'app.controllers',
-        'app.services',
-        'app.directives',
-        'angucomplete-alt',
-        'cfp.hotkeys',
-        'ngStorage',
-        'angular-cache',
-        'datePicker',
-        require('angular-i18n/nb-no'),
-        'angulartics',
-        'angulartics.google.analytics'
-    ];
+        var requires = [
+            'ui.router',
+            'templates',
+            'app.controllers',
+            'app.services',
+            'app.directives',
+            'angucomplete-alt',
+            'cfp.hotkeys',
+            'ngStorage',
+            'angular-cache',
+            'datePicker',
+            require('angular-i18n/nb-no'),
+            'angulartics',
+            'angulartics.google.analytics'
+        ];
 
-    // mount on window for testing
-    window.app = angular.module('app', requires);
+        // mount on window for testing
+        window.app = angular.module('app', requires);
 
-    angular.module('app').constant('AppSettings', require('./constants'));
+        angular.module('app').constant('AppSettings', require('./constants'));
 
-    angular.module('app').config(require('./on_config'));
+        angular.module('app').config(require('./on_config'));
 
-    angular.module('app').run(require('./on_run'));
+        angular.module('app').run(require('./on_run'));
 
-    angular.module('app').config(function (hotkeysProvider) {
-        hotkeysProvider.includeCheatSheet = true;
+        angular.module('app').config(function (hotkeysProvider) {
+            hotkeysProvider.includeCheatSheet = true;
+        });
+
+        angular.bootstrap(document, ['app']);
+
     });
+}
 
-    angular.bootstrap(document, ['app']);
-
-});
+//If cordova is present, wait for it to initialize, otherwise just try to
+//bootstrap the application.
+if (window.cordova !== undefined) {
+    //console.log('Cordova found, wating for device.');
+    document.addEventListener('deviceready', bootstrap, false);
+} else {
+    //console.log('Cordova not found, booting application');
+    bootstrap();
+}
