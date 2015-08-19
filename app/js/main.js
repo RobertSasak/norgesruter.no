@@ -18,6 +18,10 @@ require('../../node_modules/angulartics/src/angulartics-ga.js');
 
 
 function bootstrap() {
+    if (window.cordova) {
+        window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+
     // create and bootstrap application
     angular.element(document).ready(function () {
 
