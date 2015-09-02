@@ -14,7 +14,6 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $urlMat
 			return str && str.replace(/ /g, '-').replace('/', '');
 		},
 		decode: function (str) {
-			console.log(str);
 			return str && str.replace(/-/g, ' ');
 		},
 		is: function (str) {
