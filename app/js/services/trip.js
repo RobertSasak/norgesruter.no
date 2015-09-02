@@ -90,9 +90,13 @@ servicesModule
 
                 return ReiseInfo.trip(_options)
                     .then(function (data) {
-                        var error = data.TripList.errorText;
-                        if (error) {
-                            return $q.reject(error);
+                        var errorCode = data.TripList.errorCode;
+                        if (errorCode) {
+                            var errorText = data.TripList.errorText;
+                            return $q.reject({
+                                code: errorCode,
+                                text: errorText
+                            });
                         }
                         return normalize(data.TripList.Trip);
                     });

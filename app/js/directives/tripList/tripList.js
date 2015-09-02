@@ -7,7 +7,7 @@ var $ = require('jquery');
 /**
  * @ngInject
  */
-directivesModule.directive('tripList', function (Trip, $analytics) {
+directivesModule.directive('tripList', function (Trip, $analytics, $timeout) {
 	return {
 		restrict: 'E',
 		templateUrl: 'tripList/tripList.html',
@@ -39,12 +39,27 @@ directivesModule.directive('tripList', function (Trip, $analytics) {
 						.catch(function (error) {
 							vm.list = [];
 							vm.error = error;
+							if (error && error.status === 0) {
+								vm.error = {
+									code: 0,
+									text: 'Offline'
+								};
+							}
 						})
 						.finally(function () {
 							vm.isSearching = false;
 						});
 				}
 			}
+
+			vm.loadWithDelay = function () {
+				if (vm.originId && vm.destId) {
+					vm.isSearching = true;
+					$timeout(function () {
+						load(vm.originId, vm.destId, vm.options);
+					}, 1000);
+				}
+			};
 
 			function getLast(list) {
 				if (list.length > 0) {

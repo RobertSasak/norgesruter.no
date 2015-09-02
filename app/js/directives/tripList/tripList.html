@@ -43,8 +43,18 @@
 			</div>
 		</div>
 		
-		<div class="error" ng-if="ctrl.error && !ctrl.isSearching" ng-bind="ctrl.error"></div>
-
+		<div class="error" ng-if="ctrl.error && !ctrl.isSearching">
+			<span class="noConnection" ng-show="ctrl.error.code==0" ng-click="ctrl.loadWithDelay()">
+				<span class="fa-stack fa-3x">
+					<i class="fa fa-wifi fa-stack-1x"></i>
+					<i class="fa fa-ban fa-stack-2x" style=""></i>
+				</span>
+			</span>
+			<span ng-show="ctrl.error.code!=0">
+				<i class="fa fa-exclamation-triangle fa-5x" ng-show="ctrl.error.code!=0"></i>
+				<p ng-bind="ctrl.error.text"></p>
+			</span>
+		</div>
 	</div>
 
 	<div class="loading noPrint">
