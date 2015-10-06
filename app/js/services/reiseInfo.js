@@ -28,22 +28,23 @@ function ReiseInfo($q, $http, CacheFactory, AppSettings) {
         };
     }
 
-    if (!CacheFactory.get('allstops')) {
-        CacheFactory.createCache('allstops', {
-            storageMode: 'localStorage',
-            deleteOnExpire: 'aggressive',
-            recycleFreq: 7 * 24 * 60 * 60 * 1000
-        });
+    function createCache(name, recycleFreq) {
+        if (!CacheFactory.get(name)) {
+            return CacheFactory.createCache(name, {
+                storageMode: 'localStorage',
+                deleteOnExpire: 'aggressive',
+                recycleFreq: recycleFreq
+            });
+        }
     }
 
-    var allstopsCache = CacheFactory.get('allstops');
-
+    var tripCache = createCache('trip', 1 * 60 * 60 * 1000);
 
     service.locationName = getEndPoint('location.name');
-    service.locationAllStops = getEndPoint('location.allstops', allstopsCache);
+    service.locationAllStops = getEndPoint('location.allstops');
     service.locationNearByStops = getEndPoint('location.nearbystops');
 
-    service.trip = getEndPoint('trip');
+    service.trip = getEndPoint('trip', tripCache);
     service.departureBoard = getEndPoint('departureBoard');
     service.arrivalBoard = getEndPoint('arrivalBoard');
 
