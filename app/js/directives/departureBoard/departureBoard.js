@@ -24,6 +24,7 @@ directivesModule.directive('departureBoard', function () {
 				if (id) {
 					var options = angular.extend([], {
 						id: id,
+						rand: Math.random()
 					}, vm.options);
 
 					ReiseInfo.departureBoard(options).then(function (data) {
