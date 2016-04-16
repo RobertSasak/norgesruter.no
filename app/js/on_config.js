@@ -46,6 +46,12 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $urlMat
 			templateUrl: 'trip.html',
 			controller: 'Trip',
 			controllerAs: 'ctrl'
+		})
+		.state('detail', {
+			url: '/d/{reference}/{date}',
+			templateUrl: 'detail.html',
+			controller: 'Detail',
+			controllerAs: 'ctrl',
 		});
 
 	$urlRouterProvider.otherwise('/t');

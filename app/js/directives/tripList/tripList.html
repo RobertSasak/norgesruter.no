@@ -30,6 +30,9 @@
 							<td rowspan="2">
 								<line type="leg.type" number="leg.local"></line>
 							</td>
+							<!-- <td>
+							<a ui-sref="detail({reference: leg.reference.ref, date: leg.reference.date})" style="color: red">Details{{leg.reference|json}}</a>
+							</td> -->
 							<td ng-bind="leg.origin.time" class="time"></td>
 							<td ng-bind="leg.origin.name" class="name"></td>
 							<td rowspan="2" ng-bind="leg.duration" class="duration"></td>

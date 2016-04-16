@@ -1,0 +1,10 @@
+<table>
+	<tr ng-repeat="stop in ctrl.data.Stops.Stop">
+		<td ng-bind="stop.arrTime"></td>
+		<td ng-bind="stop.depTime"></td>
+		<td ng-bind="stop.name"></td>
+	</tr>
+</table>
+<pre>
+{{ctrl.data|json}}
+</pre>
