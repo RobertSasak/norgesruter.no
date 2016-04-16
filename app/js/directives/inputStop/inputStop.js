@@ -14,7 +14,8 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 		templateUrl: 'inputStop/inputStop.html',
 		controller: function () {
 			var vm = this;
-			var authKey = 'api-test';
+			var accessId = AppSettings.accessId;
+			var authKey = AppSettings.authKey;
 			var baseUrl = AppSettings.reiseinfoApi;
 			var limitHistory = 4;
 
@@ -64,7 +65,7 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 					return obj.id;
 				},
 				remote: {
-					url: baseUrl + 'location.name?authKey=' + authKey + '&format=json&input=%QUERY',
+					url: baseUrl + 'location.name?authKey=' + authKey + '&accessId=' + accessId + '&format=json&input=%QUERY',
 					wildcard: '%QUERY',
 					transform: function (response) {
 						return addSource(normalizeId(unwrap(response)), 'remote');
