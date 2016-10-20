@@ -17,12 +17,22 @@ function normalizePlace(o) {
     };
 }
 
+function extractReference(reference) {
+    reference = reference.replace(/%2F/g, '-');
+    var match = reference.match(/\?ref=(.*)\%3Fdate%3D([0-9]{4}-[0-9]{2}-[0-9]{2})/);
+    return {
+        ref: match[1],
+        date: match[2]
+    };
+}
+
 function normalizeLeg(l) {
     var leg = {
         type: l.type,
         local: l.local,
         origin: normalizePlace(l.Origin),
-        dest: normalizePlace(l.Destination)
+        dest: normalizePlace(l.Destination),
+        reference: l.JourneyDetailRef && extractReference(l.JourneyDetailRef.ref),
     };
 
     var startDateTime = leg.origin.date + ' ' + leg.origin.time;
