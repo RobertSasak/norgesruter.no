@@ -71,10 +71,10 @@ directivesModule.directive('inputStop', function (ReiseInfo, $interpolate, $temp
 						return addSource(normalizeId(unwrap(response)), 'remote');
 					}
 				},
-				prefetch: {
-					url: '/data/allStops.json',
-					ttl: 14 * 24 * 60 * 60 * 1000
-				},
+				// prefetch: {
+				// 	url: '/data/allStops.json',
+				// 	ttl: 14 * 24 * 60 * 60 * 1000
+				// },
 				local: LastVisited.getAll(),
 
 			});
