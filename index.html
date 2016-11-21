@@ -1,6 +1,59 @@
-<!doctype html><html manifest=/app.manifest><head><title ng-bind=pageTitle>Norgesruter</title><meta name=description content="Alle rutetider på ett sted. Norgesruter gjør det enkelt å reise kollektivt!"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name=format-detection content="telephone=no"><link rel=stylesheet href=css/main.css><link rel=stylesheet href=fonts/font-awesome/css/font-awesome.min.css><script src=js/main.js></script><meta property=og:url content="http://www.norgesruter.no"><meta property=og:type content="website"><meta property=og:title content="Kollektivt trafikk for hele Norge!"><meta property=og:site_name content="Norgesruter"><meta property=og:description content="Alle rutetider på ett sted. Norgesruter gjør det enkelt å reise kollektivt!"><meta property=og:image content="http://www.norgesruter.no/images/icon1200.png"></head><body><div class=page><div ui-view></div><div class="credit noPrint onlyDesktop">Made with <span class=heart>&#9829;</span> by <a href=http://sasak.sk>Sasak</a></div></div><div class=sharer><a class="icon fa fa-apple" href=https://itunes.apple.com/us/app/norgesruter/id1014715913 target=_blank title="Norgesruter App for iPhone or iPad" rel=nofollow></a> <a class="icon fa fa-android" href="https://play.google.com/store/apps/details?id=sk.sasak.norgesruter" target=_blank title="Norgesruter App for Android" rel=nofollow></a> <a class="icon fa fa-windows" href=https://www.microsoft.com/nb-no/store/apps/norgesruter/9nblggh1p8l2 target=_blank title="Norgesruter App for Windows and Windows Phone" rel=nofollow></a> <a class="icon fa fa-facebook" href=https://www.facebook.com/norgesruter target=_blank title="se Norgesruter på Facebook" rel=nofollow></a> <a class="icon fa fa-twitter" href=https://twitter.com/norgesruter target=_blank title="se Norgesruter på Twitter" rel=nofollow></a> <a class="icon fa fa-github" href=https://github.com/robertsasak/norgesruter.no target=_blank title="se Norgesruter på GitHub" rel=nofollow></a></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-	ga('create', 'UA-64630782-1', 'auto');</script></body></html>
+<head>
+    <meta charset="UTF-8">
+    <title>Norgesruter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4e8ef7">
+
+    <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.log('Error', err));
+    }
+  </script>-->
+
+    <link href="build/main.css" rel="stylesheet">
+    <link href="assets/leaflet.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <ion-app></ion-app>
+    </div>
+    <div class="credit noPrint onlyDesktop">
+        Made with <span class="heart">&#9829;</span> by <a href="http://sasak.sk">Sasak</a>
+    </div>
+
+    <div class="sharer animate">
+        <a href="https://itunes.apple.com/us/app/norgesruter/id1014715913" target="_blank" title="Norgesruter App for iPhone or iPad"></a>
+        <a class="ion-logo-apple" href="https://play.google.com/store/apps/details?id=sk.sasak.norgesruter" target="_blank" title="Norgesruter App for Android"></a>
+        <a class="ion-logo-microsoft" href="https://www.microsoft.com/nb-no/store/apps/norgesruter/9nblggh1p8l2" target="_blank"
+            title="Norgesruter App for Windows and Windows Phone"></a>
+        <a class="ion-logo-facebook" href="https://www.facebook.com/norgesruter" target="_blank" title="se Norgesruter på Facebook"></a>
+        <a class="ion-logo-twitter" href="https://twitter.com/norgesruter" target="_blank" title="se Norgesruter på Twitter"></a>
+        <a class="ion-logo-github" href="https://github.com/robertsasak/norgesruter.no" target="_blank" title="se Norgesruter på GitHub"></a>
+    </div>
+
+    <!-- cordova.js required for cordova apps -->
+    <script src="cordova.js"></script>
+
+    <!-- The polyfills js is generated during the build process -->
+    <script src="build/polyfills.js"></script>
+
+    <!-- The bundle js is generated during the build process -->
+    <script src="build/main.js"></script>
+
+</body>
+
+</html>
